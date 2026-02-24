@@ -493,6 +493,93 @@ const nounLessonData = [
     }
 ];
 
+const pronounLessonData = [
+    // PART 1: Basics
+    {
+        type: 'theory',
+        illustration: '🔄',
+        title: '1. What is a Pronoun?',
+        content: 'A Pronoun is a word used <b>in place of a Noun</b>.<br>It stops us from repeating the same name again and again.'
+    },
+    {
+        type: 'theory',
+        illustration: '🗣️',
+        title: '2. Why use it?',
+        content: 'Bad: "Rahul eats. Rahul sleeps."<br>Good: "Rahul eats. <b>He</b> sleeps."'
+    },
+    {
+        type: 'theory',
+        illustration: '📋',
+        title: '3. Common Pronouns',
+        content: '<b>I, You, He, She, It, We, They</b>.<br>These are used for people and things.'
+    },
+    {
+        type: 'quiz',
+        illustration: '❓',
+        title: 'Quiz 1',
+        question: 'Which word can replace "Sara" (a girl)?',
+        options: ['He', 'It', 'She', 'They'],
+        correctIndex: 2 // She
+    },
+
+    // PART 2: Gender & Numbers
+    {
+        type: 'theory',
+        illustration: '👨',
+        title: '4. He vs She',
+        content: '<b>He</b> is used for boys/men.<br><b>She</b> is used for girls/women.<br><b>It</b> is used for animals or objects.'
+    },
+    {
+        type: 'theory',
+        illustration: '👥',
+        title: '5. Singular vs Plural',
+        content: 'One person: <b>I, He, She</b>.<br>Many people: <b>We, They</b>.'
+    },
+    {
+        type: 'theory',
+        illustration: '👉',
+        title: '6. Pointing Out',
+        content: '<b>This / That</b> are also pronouns used to point at things.<br>"<b>This</b> is my car."'
+    },
+    {
+        type: 'quiz',
+        illustration: '🤔',
+        title: 'Quiz 2',
+        question: 'Select the pronoun for "My friends and I":',
+        options: ['They', 'We', 'He', 'You'],
+        correctIndex: 1 // We
+    },
+
+    // PART 3: Sentence Practice
+    {
+        type: 'theory',
+        illustration: '🐕',
+        title: '7. For Animals',
+        content: 'We usually use <b>It</b> for animals.<br>"The dog barks. <b>It</b> is loud."'
+    },
+    {
+        type: 'theory',
+        illustration: '🔄',
+        title: '8. Replacement',
+        content: 'Example:<br><i>"The bag is heavy."</i><br>Can be changed to:<br><i>"<b>It</b> is heavy."</i>'
+    },
+    {
+        type: 'theory',
+        illustration: '🎯',
+        title: '9. Subject Pronouns',
+        content: 'These pronouns do the action:<br><b>She</b> runs.<br><b>They</b> play.<br><b>We</b> dance.'
+    },
+    {
+        type: 'quiz',
+        illustration: '🏆',
+        title: 'Final Quiz',
+        question: 'Replace the bold words: "<b>The boys</b> are playing."',
+        options: ['He', 'We', 'They', 'It'],
+        correctIndex: 2 // They
+    }
+];
+
+
         
         // --- STATE ---
         let currentTopicIndex = 0;
@@ -527,33 +614,43 @@ const nounLessonData = [
         }
 
         // --- LESSON LOGIC ---
-        function startLesson(index) {
-            if (topics[index].id !== 'noun') {
-                alert("Only 'Noun' content is ready for this demo!");
-                return;
-            }
+                    // --- UPDATED FUNCTIONS ---
 
-            currentTopicIndex = index;
-            currentCardIndex = 0;
-            isLessonActive = true;
-            
-            // Switch Views
-            document.getElementById('path-view').style.display = 'none';
-            document.getElementById('lesson-view').style.display = 'flex';
-            document.getElementById('bottom-nav').style.display = 'none';
-            document.getElementById('top-bar').style.visibility = 'visible';
-            
-            renderCard();
-        }
+function startLesson(index) {
+    // Ab Noun aur Pronoun dono allowed hain
+    if (topics[index].id !== 'noun' && topics[index].id !== 'pronoun') {
+        alert("This topic is locked or coming soon!");
+        return;
+    }
 
-        function renderCard() {
-            const data = nounLessonData[currentCardIndex];
-            const container = document.getElementById('card-container');
-            const nextBtn = document.getElementById('next-btn');
-            
-            // Update Progress Bar
-            const progress = ((currentCardIndex) / nounLessonData.length) * 100;
-            document.getElementById('progress-fill').style.width = `${progress}%`;
+    currentTopicIndex = index;
+    currentCardIndex = 0;
+    isLessonActive = true;
+    
+    // Switch Views
+    document.getElementById('path-view').style.display = 'none';
+    document.getElementById('lesson-view').style.display = 'flex';
+    document.getElementById('bottom-nav').style.display = 'none';
+    document.getElementById('top-bar').style.visibility = 'visible';
+    
+    renderCard();
+}     
+function renderCard() {
+    // Check karein ki kaunsa topic hai aur uska data lein
+    let currentData;
+    if (topics[currentTopicIndex].id === 'noun') {
+        currentData = nounLessonData;
+    } else if (topics[currentTopicIndex].id === 'pronoun') {
+        currentData = pronounLessonData;
+    }
+
+    const data = currentData[currentCardIndex]; // Use selected data
+    const container = document.getElementById('card-container');
+    const nextBtn = document.getElementById('next-btn');
+    
+    // Update Progress Bar
+    const progress = ((currentCardIndex) / currentData.length) * 100;
+    document.getElementById('progress-fill').style.width = `${progress}%`;
 
             // Reset Quiz State
             quizAnswered = false;
@@ -602,13 +699,19 @@ const nounLessonData = [
         }
 
         function nextCard() {
-            if (currentCardIndex < nounLessonData.length - 1) {
-                currentCardIndex++;
-                renderCard();
-            } else {
-                finishLesson();
-            }
-        }
+    // Current data length determine karein
+    let totalCards = 0;
+    if (topics[currentTopicIndex].id === 'noun') totalCards = nounLessonData.length;
+    else if (topics[currentTopicIndex].id === 'pronoun') totalCards = pronounLessonData.length;
+
+    if (currentCardIndex < totalCards - 1) {
+        currentCardIndex++;
+        renderCard();
+    } else {
+        finishLesson();
+    }
+}
+ 
 
         function prevCard() {
             if (currentCardIndex > 0) {
@@ -628,7 +731,6 @@ const nounLessonData = [
             document.getElementById('progress-fill').style.width = '100%';
 
             // Unlock next topic
-       
             if (topics[currentTopicIndex + 1]) {
                 topics[currentTopicIndex + 1].locked = false;
             }
@@ -643,15 +745,18 @@ const nounLessonData = [
         }
 
         function exitLesson() {
-            isLessonActive = false;
-            document.getElementById('path-view').style.display = 'flex';
-            document.getElementById('lesson-view').style.display = 'none';
-            document.getElementById('bottom-nav').style.display = 'flex';
-            document.getElementById('top-bar').style.visibility = 'hidden';
-            renderPath(); // Re-render to show unlocked lock
-        }
+    isLessonActive = false;
+    
+    // YAHAN GALTI THI -> 'flex' ko hata kar 'grid' karna hai
+    document.getElementById('path-view').style.display = 'grid'; 
+    
+    document.getElementById('lesson-view').style.display = 'none';
+    document.getElementById('bottom-nav').style.display = 'flex';
+    document.getElementById('top-bar').style.visibility = 'hidden';
+    renderPath(); 
+}    
 
-        function changeTab(tabName) {
+    function changeTab(tabName) {
             const items = document.querySelectorAll('.nav-item');
             items.forEach(item => item.classList.remove('active'));
             // Just visual logic for now
@@ -669,4 +774,3 @@ const nounLessonData = [
     </script>
 </body>
 </html>
-
