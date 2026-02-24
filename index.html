@@ -1196,7 +1196,130 @@ const reasoningTopics = [
         correctIndex: 1 // Past regret
     }
 ], 
+            'ratio': [
+    // PART 1: The Concept
+    {
+        type: 'theory',
+        illustration: '⚖️',
+        title: '1. What is a Ratio?',
+        content: 'A Ratio compares <b>two quantities</b>.<br>It tells us how much of one thing there is compared to another.'
+    },
+    {
+        type: 'theory',
+        illustration: '🍎',
+        title: '2. Visual Example',
+        content: 'Imagine a bowl with <b>2 apples</b> and <b>3 oranges</b>.<br>The ratio of Apples to Oranges is <b>2 : 3</b>.'
+    },
+    {
+        type: 'theory',
+        illustration: '📝',
+        title: '3. Three Ways to Write',
+        content: 'You can write ratios in three ways:<br>1. With a colon: <b>1 : 2</b><br>2. As a fraction: <b>1 / 2</b><br>3. With words: <b>1 to 2</b>'
+    },
+    {
+        type: 'quiz',
+        illustration: '❓',
+        title: 'Quiz 1',
+        question: 'If there are 4 cats and 1 dog, what is the ratio of Dogs to Cats?',
+        options: ['4 : 1', '1 : 4', '1 to 5', '4 / 1'],
+        correctIndex: 1 // 1 : 4 (Order matters!)
+    },
 
+    // PART 2: Simplifying Ratios
+    {
+        type: 'theory',
+        illustration: '✂️',
+        title: '4. Simplifying Ratios',
+        content: 'Just like fractions, ratios can be simplified.<br>Divide both sides by the <b>same number</b> (Highest Common Factor).'
+    },
+    {
+        type: 'theory',
+        illustration: '🔢',
+        title: '5. Simplify Example',
+        content: 'Ratio: <b>10 : 15</b><br>Both can be divided by 5.<br>10 ÷ 5 = <b>2</b><br>15 ÷ 5 = <b>3</b><br>Simplified Ratio: <b>2 : 3</b>'
+    },
+    {
+        type: 'quiz',
+        illustration: '🧠',
+        title: 'Quiz 2',
+        question: 'Simplify the ratio 8 : 12',
+        options: ['4 : 6', '2 : 3', '8 : 12', '1 : 2'],
+        correctIndex: 1 // Divide by 4 -> 2:3
+    },
+
+    // PART 3: The Unit Trap
+    {
+        type: 'theory',
+        illustration: '⚠️',
+        title: '6. The Golden Rule of Units',
+        content: 'To compare two things, they must have the <b>Same Units</b>.<br>You cannot compare cm to meters directly!'
+    },
+    {
+        type: 'theory',
+        illustration: '📏',
+        title: '7. Unit Conversion Example',
+        content: 'Ratio of <b>20 cm</b> to <b>1 meter</b>.<br>1. Change 1m to 100cm.<br>2. Ratio is 20 : 100.<br>3. Simplify (÷20) → <b>1 : 5</b>.'
+    },
+    {
+        type: 'quiz',
+        illustration: '🤔',
+        title: 'Quiz 3',
+        question: 'Find ratio of 1 minute to 30 seconds:',
+        options: ['1 : 30', '2 : 1', '1 : 2', '30 : 1'],
+        correctIndex: 1 // 60s : 30s -> 2 : 1
+    },
+
+    // PART 4: Sharing in a Ratio (The "Parts" Method)
+    {
+        type: 'theory',
+        illustration: '🍰',
+        title: '8. Sharing Amounts',
+        content: 'To share a total in a ratio (e.g., 2:3):<br>1. Add the parts (2 + 3 = <b>5 parts</b>).<br>2. Divide Total by parts (Find value of 1 part).<br>3. Multiply.'
+    },
+    {
+        type: 'theory',
+        illustration: '💰',
+        title: '9. Sharing Example',
+        content: 'Share <b>$50</b> in ratio <b>2:3</b>.<br>Total parts: 5.<br>Value of 1 part: $50 ÷ 5 = <b>$10</b>.<br>Person A (2 parts): 2 × $10 = <b>$20</b>.<br>Person B (3 parts): 3 × $10 = <b>$30</b>.'
+    },
+    {
+        type: 'quiz',
+        illustration: '🍬',
+        title: 'Quiz 4',
+        question: 'Share 20 candies in ratio 1:4',
+        options: ['5 and 15', '4 and 16', '2 and 8', '10 and 10'],
+        correctIndex: 1 // 1+4=5 parts. 20/5=4. (1x4) and (4x4) -> 4 and 16
+    },
+
+    // PART 5: Advanced Concepts
+    {
+        type: 'theory',
+        illustration: '🗺️',
+        title: '10. Scale Drawings',
+        content: 'Maps use ratios! Scale <b>1 : 1000</b>.<br>This means 1 cm on the map equals 1000 cm (10m) in real life.'
+    },
+    {
+        type: 'theory',
+        illustration: '🔗',
+        title: '11. Proportions',
+        content: 'A Proportion says two ratios are equal.<br><b>1 : 2 = 5 : 10</b><br>You can cross-multiply to solve for missing numbers.'
+    },
+    {
+        type: 'theory',
+        illustration: '📐',
+        title: '12. Three-Part Ratios',
+        content: 'You can compare three things!<br>Recipe: 1 part sugar, 2 parts flour, 3 parts milk.<br>Ratio: <b>1 : 2 : 3</b>.'
+    },
+    {
+        type: 'quiz',
+        illustration: '🏆',
+        title: 'Final Mastery Quiz',
+        question: 'If A:B is 2:3 and B:C is 3:5, what is A:B:C?',
+        options: ['2 : 3 : 5', '2 : 6 : 5', '5 : 3 : 2', '2 : 5 : 3'],
+        correctIndex: 0 // Since B is 3 in both, we can merge directly -> 2:3:5
+    }
+], 
+        
             'numSeries': [
         {
             type: 'theory',
