@@ -331,18 +331,28 @@
     </div>
 
     <script>
-        // --- TOPIC CONFIGURATION ---
-        const topics = [
-            { id: 'noun', name: 'Noun', icon: '📦', locked: false },       // 1. Center
-            { id: 'pronoun', name: 'Pronoun', icon: '👈', locked: true },  // 2. Center
-            { id: 'adjective', name: 'Adjective', icon: '✨', locked: true }, // 3. Left
-            { id: 'adverb', name: 'Adverb', icon: '🚀', locked: true },    // 4. Center
-            { id: 'conjunction', name: 'Conjunct', icon: '🔗', locked: true }, // 5. Right
-            { id: 'models', name: 'Models', icon: '🛠️', locked: true },    // 6. Left
-            { id: 'clauses', name: 'Clauses', icon: '📝', locked: true },  // 7. Center
-            { id: 'grammar1', name: 'Grammar 1', icon: '🏆', locked: true } // 8. Right
-        ];
+        // --- 1. DEFINE TOPICS SEPARATELY ---
+    
+    const englishTopics = [
+        { id: 'noun', name: 'Noun', icon: '📦', locked: false },
+        { id: 'pronoun', name: 'Pronoun', icon: '👈', locked: true },
+        { id: 'adjective', name: 'Adjective', icon: '✨', locked: true },
+        { id: 'adverb', name: 'Adverb', icon: '🚀', locked: true },
+        { id: 'conjunction', name: 'Conjunct', icon: '🔗', locked: true },
+        { id: 'models', name: 'Models', icon: '🛠️', locked: true },
+        { id: 'clauses', name: 'Clauses', icon: '📝', locked: true },
+        { id: 'grammar1', name: 'Grammar 1', icon: '🏆', locked: true }
+    ];
 
+    // Math Topics (Jo aapne mange)
+    const mathTopics = [
+        { id: 'ratio', name: 'Ratio', icon: '⚖️', locked: false }, // Center
+        { id: 'average', name: 'Average', icon: '📊', locked: true }, // Center
+        { id: 'lcm', name: 'LCM/HCF', icon: '🔢', locked: true },    // Left
+        { id: 'profit', name: 'Profit', icon: '💰', locked: true },   // Center
+        { id: 'speed', name: 'Speed', icon: '⏱️', locked: true },    // Right
+        { id: 'percentage', name: 'Percent', icon: '%', locked: true } // Left (New Row)
+    ];
         // --- MASTER DATA OBJECT ---
         // Yahan aap naye topics ka data add kar sakte hain
         const allLessons = {
@@ -1178,11 +1188,14 @@
             
         };
 
-        // --- STATE ---
-        let currentTopicIndex = 0;
-        let currentCardIndex = 0;
-        let isLessonActive = false;
-        let quizAnswered = false;
+         let currentSubject = 'english'; // Default subject
+    let currentTopics = englishTopics; // Jo abhi screen par dikhana hai
+    
+    // Baaki purane variables wahi rahenge
+    let currentTopicIndex = 0;
+    let currentCardIndex = 0;
+    let isLessonActive = false;
+    let quizAnswered = false;
 
         // --- INIT ---
         window.onload = function() {
