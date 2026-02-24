@@ -64,69 +64,77 @@
             position: relative;
             padding-bottom: 80px; /* Space for bottom nav */
         }
+/* --- UPDATED PATH VIEW (Grid Layout) --- */
+#path-view {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* 3 Columns: Left, Center, Right */
+    row-gap: 50px; /* Space between rows */
+    padding: 40px 20px;
+    background: url('https://www.transparenttextures.com/patterns/cubes.png');
+    justify-items: center; /* Center items in their cells */
+}
 
-        /* --- PATH VIEW (Map) --- */
-        #path-view {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 40px;
-            background: url('https://www.transparenttextures.com/patterns/cubes.png'); /* Subtle pattern */
-        }
+/* Node Styles */
+.level-node {
+    width: 70px; /* Thoda chhota kiya taki 3 fit ho sakein */
+    height: 70px;
+    border-radius: 50%;
+    background-color: var(--secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 5px 0 #d4a005;
+    cursor: pointer;
+    transition: transform 0.1s;
+    z-index: 2;
+}
 
-        .level-node {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background-color: var(--secondary);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 40px;
-            position: relative;
-            box-shadow: 0 6px 0 #d4a005; /* 3D effect */
-            cursor: pointer;
-            transition: transform 0.1s;
-            z-index: 2;
-        }
+.level-node:active { transform: translateY(4px); box-shadow: 0 2px 0 #d4a005; }
+.level-node.locked { background-color: var(--gray); box-shadow: 0 5px 0 var(--gray-dark); cursor: not-allowed; }
+.level-icon { font-size: 28px; color: white; }
 
-        .level-node:active {
-            transform: translateY(4px);
-            box-shadow: 0 2px 0 #d4a005;
-        }
+.level-label {
+    position: absolute;
+    bottom: -25px;
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--gray-dark);
+    white-space: nowrap;
+    text-align: center;
+}
+.level-node:not(.locked) .level-label { color: var(--text); }
 
-        .level-node.locked {
-            background-color: var(--gray);
-            box-shadow: 0 6px 0 var(--gray-dark);
-            cursor: not-allowed;
-        }
+/* --- POSITIONING LOGIC (The Unique Shape) --- */
+/* Noun (1) & Pronoun (2) -> Center Column */
+.level-node:nth-child(1), 
+.level-node:nth-child(2) { grid-column: 2; }
 
-        .level-icon {
-            font-size: 32px;
-            color: white;
-        }
+/* Adjective (3) -> Left, Adverb (4) -> Center, Conj (5) -> Right */
+.level-node:nth-child(3) { grid-column: 1; }
+.level-node:nth-child(4) { grid-column: 2; }
+.level-node:nth-child(5) { grid-column: 3; }
 
-        .level-label {
-            position: absolute;
-            bottom: -30px;
-            font-weight: bold;
-            color: var(--gray-dark);
-            white-space: nowrap;
-        }
+/* Models (6) -> Left, Clauses (7) -> Center, Grammar1 (8) -> Right */
+.level-node:nth-child(6) { grid-column: 1; }
+.level-node:nth-child(7) { grid-column: 2; }
+.level-node:nth-child(8) { grid-column: 3; }
 
-        .level-node:not(.locked) .level-label {
-            color: var(--text);
-        }
-
-        /* Connecting Line */
-        .path-line {
-            width: 4px;
-            height: 40px;
-            background-color: var(--gray-dark);
-            position: absolute;
-            bottom: -46px; /* Connects to next node */
-            z-index: 1;
-        }
+/* --- LINES (Simple Vertical Connectors) --- */
+/* Har node ke neeche ek line jo next row tak jaye */
+.path-line {
+    width: 4px;
+    height: 55px; /* Gap cover karne ke liye */
+    background-color: var(--gray-dark);
+    position: absolute;
+    bottom: -55px;
+    z-index: 1;
+    /* Last row ke elements par line nahi chahiye */
+    display: block;
+}
+/* Last row items won't have lines (handled in JS or just CSS hide) */
+.level-node:last-child .path-line { display: none; }
+  
 
         /* --- LESSON VIEW (Cards) --- */
         #lesson-view {
@@ -340,8 +348,10 @@
             
             <div class="lesson-footer">
                 <button class="btn btn-back" onclick="prevCard()">
-                    Start
-                </button>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6"/>
+    </svg>
+</button>
                 <button class="btn btn-next" id="next-btn" onclick="nextCard()">
                     KEEP GOING
                 </button>
@@ -374,13 +384,22 @@
 
     <script>
         // --- DATA ---
-        const topics = [
-            { id: 'noun', name: 'Noun', icon: '📦', locked: false },
-            { id: 'pronoun', name: 'Pronoun', icon: '👈', locked: true },
-            { id: 'adjective', name: 'Adjective', icon: '✨', locked: true },
-            { id: 'verb', name: 'Verb', icon: '🏃', locked: true },
-            { id: 'adverb', name: 'Adverb', icon: '🚀', locked: true }
-        ];
+        // --- UPDATED DATA ---
+const topics = [
+    // Level 1: Vertical (Center)
+    { id: 'noun', name: 'Noun', icon: '📦', locked: false },      // Row 1: Center
+    { id: 'pronoun', name: 'Pronoun', icon: '👈', locked: true }, // Row 2: Center
+    
+    // Level 2: Horizontal Row (Left - Center - Right)
+    { id: 'adjective', name: 'Adjective', icon: '✨', locked: true },
+    { id: 'adverb', name: 'Adverb', icon: '🚀', locked: true },
+    { id: 'conjunction', name: 'Conjunct', icon: '🔗', locked: true },
+
+    // Level 3: Next Horizontal Row
+    { id: 'models', name: 'Models', icon: '🛠️', locked: true },
+    { id: 'clauses', name: 'Clauses', icon: '📝', locked: true },
+    { id: 'grammar1', name: 'Grammar 1', icon: '🏆', locked: true } 
+];
 
         // 4 Theory Cards + 1 Quiz Card for NOUN
         const nounLessonData = [
@@ -591,5 +610,6 @@
         }
     </script>
 </body>
-  </html>
-  
+</html>
+
+                                        
