@@ -344,26 +344,357 @@
         // MASTER CONTENT OBJECT (Add new topics here easily)
         const allLessons = {
             'noun': [
-                { type: 'theory', illustration: '🐱', title: 'What is a Noun?', content: 'A Noun is a naming word for a <b>Person, Place, Animal, or Thing</b>.' },
-                { type: 'theory', illustration: '👦 🏫', title: 'Examples', content: 'Person: Rahul<br>Place: Delhi<br>Thing: Table' },
-                { type: 'quiz', illustration: '❓', title: 'Quiz 1', question: 'Which is a Noun?', options: ['Run', 'Apple', 'Fast', 'Blue'], correctIndex: 1 },
-                // Add more noun cards here...
-            ],
-            'pronoun': [
-                { type: 'theory', illustration: '🔄', title: 'What is a Pronoun?', content: 'Used in place of a Noun.<br>Ex: <b>He, She, It</b>.' },
-                { type: 'theory', illustration: '🗣️', title: 'Usage', content: 'Rahul is nice. -> <b>He</b> is nice.' },
-                { type: 'quiz', illustration: '❓', title: 'Quiz 1', question: 'Pronoun for "Sara"?', options: ['He', 'She', 'It', 'They'], correctIndex: 1 }
-            ],
-            'adjective': [
-                { type: 'theory', illustration: '✨', title: 'Adjective?', content: 'Describing words.<br>They tell us more about a Noun.' },
-                { type: 'theory', illustration: '🔴', title: 'Example', content: '<b>Red</b> car.<br><b>Big</b> house.<br><b>Happy</b> boy.' },
-                { type: 'quiz', illustration: '❓', title: 'Quiz 1', question: 'Find the Adjective: "Tall tree"', options: ['Tall', 'Tree', 'The', 'Is'], correctIndex: 0 }
-            ],
-            'adverb': [ // Placeholder for Adverb
-                { type: 'theory', illustration: '🚀', title: 'Adverb', content: 'Modifies a verb.<br>He runs <b>quickly</b>.' },
-                { type: 'quiz', illustration: '❓', title: 'Quiz', question: 'Find Adverb: "Sing loudly"', options: ['Sing', 'Loudly'], correctIndex: 1 }
-            ]
-        };
+    // PART 1: Basics
+    {
+        type: 'theory',
+        illustration: '🐱',
+        title: '1. What is a Noun?',
+        content: 'A Noun is a naming word. It is used to name a <b>Person, Place, Animal, or Thing</b>.'
+    },
+    {
+        type: 'theory',
+        illustration: '👦 🏫',
+        title: '2. Examples',
+        content: '<b>Person:</b> Boy, Rahul, Doctor<br><b>Place:</b> School, Delhi, Park<br><b>Thing:</b> Table, Pen, Car'
+    },
+    {
+        type: 'theory',
+        illustration: '👀',
+        title: '3. Look Around',
+        content: 'Everything you can see or touch usually has a name. That name is a <b>Noun</b>.'
+    },
+    {
+        type: 'quiz',
+        illustration: '❓',
+        title: 'Quiz 1',
+        question: 'Which of these is a Noun (Thing)?',
+        options: ['Run', 'Blue', 'Chair', 'Quickly'],
+        correctIndex: 2 // Chair
+    },
+
+    // PART 2: Types (Common vs Proper)
+    {
+        type: 'theory',
+        illustration: '🏙️',
+        title: '4. Common Noun',
+        content: 'A general name for something.<br>Example: <i>City, Dog, Boy</i>. It does not start with a capital letter.'
+    },
+    {
+        type: 'theory',
+        illustration: '🗽',
+        title: '5. Proper Noun',
+        content: 'A special, specific name.<br>Example: <i>Mumbai, Tommy, Rahul</i>. It <b>always</b> starts with a Capital Letter.'
+    },
+    {
+        type: 'theory',
+        illustration: 'vs',
+        title: '6. Compare Them',
+        content: 'Boy -> <b>Rahul</b><br>City -> <b>Delhi</b><br>Car -> <b>Honda</b>'
+    },
+    {
+        type: 'quiz',
+        illustration: '🤔',
+        title: 'Quiz 2',
+        question: 'Select the PROPER Noun:',
+        options: ['school', 'London', 'table', 'book'],
+        correctIndex: 1 // London
+    },
+
+    // PART 3: Usage in Sentences
+    {
+        type: 'theory',
+        illustration: '📝',
+        title: '7. Subject of Sentence',
+        content: 'Nouns often come at the start of a sentence as the Subject.<br><i>"<b>Birds</b> fly in the sky."</i>'
+    },
+    {
+        type: 'theory',
+        illustration: '🎯',
+        title: '8. Object of Sentence',
+        content: 'Nouns can also receive action.<br><i>"He kicked the <b>ball</b>."</i> (Ball is the object).'
+    },
+    {
+        type: 'theory',
+        illustration: '🔍',
+        title: '9. Spotting Nouns',
+        content: 'Try to find the nouns here: <br><i>"The <b>cat</b> drinks <b>milk</b>."</i>'
+    },
+    {
+        type: 'quiz',
+        illustration: '🏆',
+        title: 'Final Quiz',
+        question: 'Identify the Noun in this sentence: "She eats an apple."',
+        options: ['She', 'Eats', 'An', 'Apple'],
+        correctIndex: 3 // Apple
+    }
+] ,
+
+‘pronoun’ : [
+    // PART 1: Basics
+    {
+        type: 'theory',
+        illustration: '🔄',
+        title: '1. What is a Pronoun?',
+        content: 'A Pronoun is a word used <b>in place of a Noun</b>.<br>It stops us from repeating the same name again and again.'
+    },
+    {
+        type: 'theory',
+        illustration: '🗣️',
+        title: '2. Why use it?',
+        content: 'Bad: "Rahul eats. Rahul sleeps."<br>Good: "Rahul eats. <b>He</b> sleeps."'
+    },
+    {
+        type: 'theory',
+        illustration: '📋',
+        title: '3. Common Pronouns',
+        content: '<b>I, You, He, She, It, We, They</b>.<br>These are used for people and things.'
+    },
+    {
+        type: 'quiz',
+        illustration: '❓',
+        title: 'Quiz 1',
+        question: 'Which word can replace "Sara" (a girl)?',
+        options: ['He', 'It', 'She', 'They'],
+        correctIndex: 2 // She
+    },
+
+    // PART 2: Gender & Numbers
+    {
+        type: 'theory',
+        illustration: '👨',
+        title: '4. He vs She',
+        content: '<b>He</b> is used for boys/men.<br><b>She</b> is used for girls/women.<br><b>It</b> is used for animals or objects.'
+    },
+    {
+        type: 'theory',
+        illustration: '👥',
+        title: '5. Singular vs Plural',
+        content: 'One person: <b>I, He, She</b>.<br>Many people: <b>We, They</b>.'
+    },
+    {
+        type: 'theory',
+        illustration: '👉',
+        title: '6. Pointing Out',
+        content: '<b>This / That</b> are also pronouns used to point at things.<br>"<b>This</b> is my car."'
+    },
+    {
+        type: 'quiz',
+        illustration: '🤔',
+        title: 'Quiz 2',
+        question: 'Select the pronoun for "My friends and I":',
+        options: ['They', 'We', 'He', 'You'],
+        correctIndex: 1 // We
+    },
+
+    // PART 3: Sentence Practice
+    {
+        type: 'theory',
+        illustration: '🐕',
+        title: '7. For Animals',
+        content: 'We usually use <b>It</b> for animals.<br>"The dog barks. <b>It</b> is loud."'
+    },
+    {
+        type: 'theory',
+        illustration: '🔄',
+        title: '8. Replacement',
+        content: 'Example:<br><i>"The bag is heavy."</i><br>Can be changed to:<br><i>"<b>It</b> is heavy."</i>'
+    },
+    {
+        type: 'theory',
+        illustration: '🎯',
+        title: '9. Subject Pronouns',
+        content: 'These pronouns do the action:<br><b>She</b> runs.<br><b>They</b> play.<br><b>We</b> dance.'
+    },
+    {
+        type: 'quiz',
+        illustration: '🏆',
+        title: 'Final Quiz',
+        question: 'Replace the bold words: "<b>The boys</b> are playing."',
+        options: ['He', 'We', 'They', 'It'],
+        correctIndex: 2 // They
+    }
+],
+‘adjective’ :  [
+    // PART 1: The Basics
+    {
+        type: 'theory',
+        illustration: '🎨',
+        title: '1. What is an Adjective?',
+        content: 'An Adjective is a word that <b>describes a Noun or Pronoun</b>.<br>It tells us more about quality, size, shape, or color.'
+    },
+    {
+        type: 'theory',
+        illustration: '🍎',
+        title: '2. Examples',
+        content: 'Noun: "Apple"<br>With Adjective: "<b>Red</b> apple", "<b>Sweet</b> apple", "<b>Big</b> apple".'
+    },
+    {
+        type: 'theory',
+        illustration: '🕵️',
+        title: '3. Spotting Them',
+        content: 'They usually answer questions like:<br><i>"What kind?"</i> (<b>Blue</b> car)<br><i>"How many?"</i> (<b>Two</b> dogs).'
+    },
+    {
+        type: 'quiz',
+        illustration: '❓',
+        title: 'Quiz 1',
+        question: 'Find the adjective: "The tall man smiled."',
+        options: ['The', 'Tall', 'Man', 'Smiled'],
+        correctIndex: 1 // Tall
+    },
+
+    // PART 2: Types of Adjectives
+    {
+        type: 'theory',
+        illustration: '✨',
+        title: '4. Adjectives of Quality',
+        content: 'These describe the <b>kind or nature</b> of a person or thing.<br>Examples: <b>Honest</b> boy, <b>Heavy</b> box, <b>Beautiful</b> flower.'
+    },
+    {
+        type: 'theory',
+        illustration: '🔢',
+        title: '5. Adjectives of Quantity/Number',
+        content: 'These tell us <b>how much</b> or <b>how many</b>.<br>Examples: <b>Some</b> rice, <b>Enough</b> money, <b>Five</b> fingers.'
+    },
+    {
+        type: 'theory',
+        illustration: '👉',
+        title: '6. Demonstrative Adjectives',
+        content: 'Used to point out specific nouns.<br><b>This</b> book, <b>That</b> star, <b>These</b> shoes.<br><i>Note: They must be followed immediately by a noun.</i>'
+    },
+    {
+        type: 'quiz',
+        illustration: '🧠',
+        title: 'Quiz 2',
+        question: 'Identify the Adjective of Quantity:',
+        options: ['Good', 'This', 'Little', 'Red'],
+        correctIndex: 2 // Little (describes amount)
+    },
+
+    // PART 3: Degrees of Comparison (The 3 Levels)
+    {
+        type: 'theory',
+        illustration: '📈',
+        title: '7. Three Degrees',
+        content: '1. <b>Positive:</b> Big (One thing)<br>2. <b>Comparative:</b> Bigger (Comparing two)<br>3. <b>Superlative:</b> Biggest (Comparing three or more).'
+    },
+    {
+        type: 'theory',
+        illustration: '➕',
+        title: '8. Rule: -er and -est',
+        content: 'For short words, we add <b>-er</b> and <b>-est</b>.<br>Fast → Fast<b>er</b> → Fast<b>est</b>.<br>Tall → Tall<b>er</b> → Tall<b>est</b>.'
+    },
+    {
+        type: 'theory',
+        illustration: '🤔',
+        title: '9. Rule: More and Most',
+        content: 'For longer words (2+ syllables), we use <b>more</b> and <b>most</b>.<br>Beautiful → <b>More</b> beautiful → <b>Most</b> beautiful.'
+    },
+    {
+        type: 'theory',
+        illustration: '🤪',
+        title: '10. Irregular Adjectives',
+        content: 'Some words change completely!<br>Good → <b>Better</b> → <b>Best</b><br>Bad → <b>Worse</b> → <b>Worst</b>.'
+    },
+    {
+        type: 'quiz',
+        illustration: '🏆',
+        title: 'Quiz 3',
+        question: 'Complete: "This puzzle is ___ than the last one."',
+        options: ['Hard', 'Harder', 'Hardest', 'More hard'],
+        correctIndex: 1 // Harder
+    },
+
+    // PART 4: Placement & Advanced Usage
+    {
+        type: 'theory',
+        illustration: '📍',
+        title: '11. Position of Adjectives',
+        content: '<b>Attributive:</b> Before the noun ("A <b>happy</b> baby").<br><b>Predicative:</b> After the verb ("The baby is <b>happy</b>").'
+    },
+    {
+        type: 'theory',
+        illustration: '😲',
+        title: '12. -ED vs -ING Adjectives',
+        content: '<b>-ED</b> describes feelings: "I am <b>bored</b>."<br><b>-ING</b> describes the cause: "The movie is <b>boring</b>."'
+    },
+    {
+        type: 'quiz',
+        illustration: '🎭',
+        title: 'Quiz 4',
+        question: 'Choose the correct form: "The news was very _____."',
+        options: ['Shocked', 'Shocking', 'Shock', 'Shocks'],
+        correctIndex: 1 // Shocking (describing the news, not a feeling)
+    },
+
+    // PART 5: Order of Adjectives
+    {
+        type: 'theory',
+        illustration: '🚂',
+        title: '13. The "Order" Rule',
+        content: 'When using multiple adjectives, follow this order:<br><b>Opinion → Size → Age → Shape → Color → Origin → Material</b>.'
+    },
+    {
+        type: 'theory',
+        illustration: '📝',
+        title: '14. Order Example 1',
+        content: 'Right: "A <b>lovely old red</b> house."<br>(Opinion → Age → Color)<br>Wrong: "A red old lovely house."'
+    },
+    {
+        type: 'theory',
+        illustration: '👜',
+        title: '15. Order Example 2',
+        content: 'Right: "A <b>small Italian leather</b> bag."<br>(Size → Origin → Material).'
+    },
+    {
+        type: 'quiz',
+        illustration: '🧩',
+        title: 'Quiz 5',
+        question: 'Which order is correct?',
+        options: [
+            'A fat black scary cat',
+            'A scary fat black cat',
+            'A black fat scary cat',
+            'A fat scary black cat'
+        ],
+        correctIndex: 1 // Opinion (scary) -> Size (fat) -> Color (black)
+    },
+
+    // PART 6: Special Cases
+    {
+        type: 'theory',
+        illustration: '👬',
+        title: '16. Nouns as Adjectives',
+        content: 'Sometimes a noun acts like an adjective to describe another noun.<br>Examples: <b>Race</b> car, <b>Shoe</b> lace, <b>History</b> teacher.'
+    },
+    {
+        type: 'theory',
+        illustration: '⚖️',
+        title: '17. "As... As" Comparisons',
+        content: 'Used to show two things are equal.<br>"He is <b>as tall as</b> his brother."<br>"This room is <b>as cold as</b> ice."'
+    },
+    {
+        type: 'theory',
+        illustration: '🔍',
+        title: '18. Few vs A Few',
+        content: '<b>Few:</b> Not many (Negative tone). "I have few friends."<br><b>A Few:</b> Some (Positive tone). "I have a few friends."'
+    },
+    {
+        type: 'theory',
+        illustration: '🔚',
+        title: '19. Little vs A Little',
+        content: 'Same rule, but for uncountable things.<br><b>Little:</b> Hardly any water.<br><b>A Little:</b> Some water.'
+    },
+    {
+        type: 'quiz',
+        illustration: '🎓',
+        title: 'Final Mastery Quiz',
+        question: 'Complete: "She has ___ patience left for his excuses."',
+        options: ['Few', 'Many', 'Little', 'A few'],
+        correctIndex: 2 // Little (Uncountable noun 'patience', negative context)
+    }
+],
+                
 
         // --- STATE ---
         let currentTopicIndex = 0;
