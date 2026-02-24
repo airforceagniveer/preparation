@@ -406,8 +406,8 @@ const topics = [
     { id: 'grammar1', name: 'Grammar 1', icon: '🏆', locked: true } 
 ];
 
-        // 4 Theory Cards + 1 Quiz Card for NOUN // --- UPDATED NOUN DATA (12 Cards: 9 Theory + 3 Quizzes) ---
-const nounLessonData = [
+        const  = allLessons {
+'noun': [
     // PART 1: Basics
     {
         type: 'theory',
@@ -491,9 +491,9 @@ const nounLessonData = [
         options: ['She', 'Eats', 'An', 'Apple'],
         correctIndex: 3 // Apple
     }
-];
+] ,
 
-const pronounLessonData = [
+‘pronoun’ : [
     // PART 1: Basics
     {
         type: 'theory',
@@ -577,7 +577,187 @@ const pronounLessonData = [
         options: ['He', 'We', 'They', 'It'],
         correctIndex: 2 // They
     }
-];
+],
+‘adjective’ :  [
+    // PART 1: The Basics
+    {
+        type: 'theory',
+        illustration: '🎨',
+        title: '1. What is an Adjective?',
+        content: 'An Adjective is a word that <b>describes a Noun or Pronoun</b>.<br>It tells us more about quality, size, shape, or color.'
+    },
+    {
+        type: 'theory',
+        illustration: '🍎',
+        title: '2. Examples',
+        content: 'Noun: "Apple"<br>With Adjective: "<b>Red</b> apple", "<b>Sweet</b> apple", "<b>Big</b> apple".'
+    },
+    {
+        type: 'theory',
+        illustration: '🕵️',
+        title: '3. Spotting Them',
+        content: 'They usually answer questions like:<br><i>"What kind?"</i> (<b>Blue</b> car)<br><i>"How many?"</i> (<b>Two</b> dogs).'
+    },
+    {
+        type: 'quiz',
+        illustration: '❓',
+        title: 'Quiz 1',
+        question: 'Find the adjective: "The tall man smiled."',
+        options: ['The', 'Tall', 'Man', 'Smiled'],
+        correctIndex: 1 // Tall
+    },
+
+    // PART 2: Types of Adjectives
+    {
+        type: 'theory',
+        illustration: '✨',
+        title: '4. Adjectives of Quality',
+        content: 'These describe the <b>kind or nature</b> of a person or thing.<br>Examples: <b>Honest</b> boy, <b>Heavy</b> box, <b>Beautiful</b> flower.'
+    },
+    {
+        type: 'theory',
+        illustration: '🔢',
+        title: '5. Adjectives of Quantity/Number',
+        content: 'These tell us <b>how much</b> or <b>how many</b>.<br>Examples: <b>Some</b> rice, <b>Enough</b> money, <b>Five</b> fingers.'
+    },
+    {
+        type: 'theory',
+        illustration: '👉',
+        title: '6. Demonstrative Adjectives',
+        content: 'Used to point out specific nouns.<br><b>This</b> book, <b>That</b> star, <b>These</b> shoes.<br><i>Note: They must be followed immediately by a noun.</i>'
+    },
+    {
+        type: 'quiz',
+        illustration: '🧠',
+        title: 'Quiz 2',
+        question: 'Identify the Adjective of Quantity:',
+        options: ['Good', 'This', 'Little', 'Red'],
+        correctIndex: 2 // Little (describes amount)
+    },
+
+    // PART 3: Degrees of Comparison (The 3 Levels)
+    {
+        type: 'theory',
+        illustration: '📈',
+        title: '7. Three Degrees',
+        content: '1. <b>Positive:</b> Big (One thing)<br>2. <b>Comparative:</b> Bigger (Comparing two)<br>3. <b>Superlative:</b> Biggest (Comparing three or more).'
+    },
+    {
+        type: 'theory',
+        illustration: '➕',
+        title: '8. Rule: -er and -est',
+        content: 'For short words, we add <b>-er</b> and <b>-est</b>.<br>Fast → Fast<b>er</b> → Fast<b>est</b>.<br>Tall → Tall<b>er</b> → Tall<b>est</b>.'
+    },
+    {
+        type: 'theory',
+        illustration: '🤔',
+        title: '9. Rule: More and Most',
+        content: 'For longer words (2+ syllables), we use <b>more</b> and <b>most</b>.<br>Beautiful → <b>More</b> beautiful → <b>Most</b> beautiful.'
+    },
+    {
+        type: 'theory',
+        illustration: '🤪',
+        title: '10. Irregular Adjectives',
+        content: 'Some words change completely!<br>Good → <b>Better</b> → <b>Best</b><br>Bad → <b>Worse</b> → <b>Worst</b>.'
+    },
+    {
+        type: 'quiz',
+        illustration: '🏆',
+        title: 'Quiz 3',
+        question: 'Complete: "This puzzle is ___ than the last one."',
+        options: ['Hard', 'Harder', 'Hardest', 'More hard'],
+        correctIndex: 1 // Harder
+    },
+
+    // PART 4: Placement & Advanced Usage
+    {
+        type: 'theory',
+        illustration: '📍',
+        title: '11. Position of Adjectives',
+        content: '<b>Attributive:</b> Before the noun ("A <b>happy</b> baby").<br><b>Predicative:</b> After the verb ("The baby is <b>happy</b>").'
+    },
+    {
+        type: 'theory',
+        illustration: '😲',
+        title: '12. -ED vs -ING Adjectives',
+        content: '<b>-ED</b> describes feelings: "I am <b>bored</b>."<br><b>-ING</b> describes the cause: "The movie is <b>boring</b>."'
+    },
+    {
+        type: 'quiz',
+        illustration: '🎭',
+        title: 'Quiz 4',
+        question: 'Choose the correct form: "The news was very _____."',
+        options: ['Shocked', 'Shocking', 'Shock', 'Shocks'],
+        correctIndex: 1 // Shocking (describing the news, not a feeling)
+    },
+
+    // PART 5: Order of Adjectives
+    {
+        type: 'theory',
+        illustration: '🚂',
+        title: '13. The "Order" Rule',
+        content: 'When using multiple adjectives, follow this order:<br><b>Opinion → Size → Age → Shape → Color → Origin → Material</b>.'
+    },
+    {
+        type: 'theory',
+        illustration: '📝',
+        title: '14. Order Example 1',
+        content: 'Right: "A <b>lovely old red</b> house."<br>(Opinion → Age → Color)<br>Wrong: "A red old lovely house."'
+    },
+    {
+        type: 'theory',
+        illustration: '👜',
+        title: '15. Order Example 2',
+        content: 'Right: "A <b>small Italian leather</b> bag."<br>(Size → Origin → Material).'
+    },
+    {
+        type: 'quiz',
+        illustration: '🧩',
+        title: 'Quiz 5',
+        question: 'Which order is correct?',
+        options: [
+            'A fat black scary cat',
+            'A scary fat black cat',
+            'A black fat scary cat',
+            'A fat scary black cat'
+        ],
+        correctIndex: 1 // Opinion (scary) -> Size (fat) -> Color (black)
+    },
+
+    // PART 6: Special Cases
+    {
+        type: 'theory',
+        illustration: '👬',
+        title: '16. Nouns as Adjectives',
+        content: 'Sometimes a noun acts like an adjective to describe another noun.<br>Examples: <b>Race</b> car, <b>Shoe</b> lace, <b>History</b> teacher.'
+    },
+    {
+        type: 'theory',
+        illustration: '⚖️',
+        title: '17. "As... As" Comparisons',
+        content: 'Used to show two things are equal.<br>"He is <b>as tall as</b> his brother."<br>"This room is <b>as cold as</b> ice."'
+    },
+    {
+        type: 'theory',
+        illustration: '🔍',
+        title: '18. Few vs A Few',
+        content: '<b>Few:</b> Not many (Negative tone). "I have few friends."<br><b>A Few:</b> Some (Positive tone). "I have a few friends."'
+    },
+    {
+        type: 'theory',
+        illustration: '🔚',
+        title: '19. Little vs A Little',
+        content: 'Same rule, but for uncountable things.<br><b>Little:</b> Hardly any water.<br><b>A Little:</b> Some water.'
+    },
+    {
+        type: 'quiz',
+        illustration: '🎓',
+        title: 'Final Mastery Quiz',
+        question: 'Complete: "She has ___ patience left for his excuses."',
+        options: ['Few', 'Many', 'Little', 'A few'],
+        correctIndex: 2 // Little (Uncountable noun 'patience', negative context)
+    }
+],
 
 
         
@@ -617,12 +797,19 @@ const pronounLessonData = [
                     // --- UPDATED FUNCTIONS ---
 
 function startLesson(index) {
-    // Ab Noun aur Pronoun dono allowed hain
-    if (topics[index].id !== 'noun' && topics[index].id !== 'pronoun') {
-        alert("This topic is locked or coming soon!");
-        return;
+    const selectedTopic = topics[index];
+
+    // 1. Check Lock
+    if (selectedTopic.locked) {
+        // Optional: Shake effect or sound for locked item
+        return; 
     }
 
+    // 2. Check agar Data maujood hai
+    if (!allLessons[selectedTopic.id]) {
+        alert("Content for " + selectedTopic.name + " is coming soon!");
+        return;
+    }   
     currentTopicIndex = index;
     currentCardIndex = 0;
     isLessonActive = true;
@@ -636,48 +823,43 @@ function startLesson(index) {
     renderCard();
 }     
 function renderCard() {
-    // Check karein ki kaunsa topic hai aur uska data lein
-    let currentData;
-    if (topics[currentTopicIndex].id === 'noun') {
-        currentData = nounLessonData;
-    } else if (topics[currentTopicIndex].id === 'pronoun') {
-        currentData = pronounLessonData;
-    }
-
-    const data = currentData[currentCardIndex]; // Use selected data
-    const container = document.getElementById('card-container');
-    const nextBtn = document.getElementById('next-btn');
+    // Current ID ke hisaab se data uthao
+    const topicId = topics[currentTopicIndex].id;
+    const currentData = allLessons[topicId]; 
+    const data = currentData[currentCardIndex];
     
-    // Update Progress Bar
+    const container = document.getElementById('card-container');
+    const nextBtn = document.getElementById('next-btn');  
+
+// Progress Bar
     const progress = ((currentCardIndex) / currentData.length) * 100;
     document.getElementById('progress-fill').style.width = `${progress}%`;
 
-            // Reset Quiz State
-            quizAnswered = false;
+    quizAnswered = false; // Reset
 
-            if (data.type === 'theory') {
-                container.innerHTML = `
-                    <div class="illustration">${data.illustration}</div>
-                    <h2>${data.title}</h2>
-                    <div class="theory-text">${data.content}</div>
-                `;
-                nextBtn.disabled = false;
-            } 
-            else if (data.type === 'quiz') {
-                let optionsHtml = '';
-                data.options.forEach((opt, i) => {
-                    optionsHtml += `<div class="quiz-option" onclick="checkAnswer(this, ${i}, ${data.correctIndex})">${opt}</div>`;
-                });
-
-                container.innerHTML = `
-                    <div class="illustration">${data.illustration}</div>
-                    <h2>${data.title}</h2>
-                    <p>${data.question}</p>
-                    <div style="width:100%">${optionsHtml}</div>
-                `;
-                nextBtn.disabled = true; // Disable until answered
-            }
-        }
+    // Content Render
+    if (data.type === 'theory') {
+        container.innerHTML = `
+            <div class="illustration">${data.illustration}</div>
+            <h2>${data.title}</h2>
+            <div class="theory-text">${data.content}</div>
+        `;
+        nextBtn.disabled = false;
+    } 
+    else if (data.type === 'quiz') {
+        let optionsHtml = '';
+        data.options.forEach((opt, i) => {
+            optionsHtml += `<div class="quiz-option" onclick="checkAnswer(this, ${i}, ${data.correctIndex})">${opt}</div>`;
+        });
+        container.innerHTML = `
+            <div class="illustration">${data.illustration}</div>
+            <h2>${data.title}</h2>
+            <p>${data.question}</p>
+            <div style="width:100%">${optionsHtml}</div>
+        `;
+        nextBtn.disabled = true;
+    }
+}
 
         function checkAnswer(element, selectedIndex, correctIndex) {
             if (quizAnswered) return; // Prevent multiple clicks
@@ -697,12 +879,9 @@ function renderCard() {
                 }, 500);
             }
         }
-
-        function nextCard() {
-    // Current data length determine karein
-    let totalCards = 0;
-    if (topics[currentTopicIndex].id === 'noun') totalCards = nounLessonData.length;
-    else if (topics[currentTopicIndex].id === 'pronoun') totalCards = pronounLessonData.length;
+function nextCard() {
+    const topicId = topics[currentTopicIndex].id;
+    const totalCards = allLessons[topicId].length; // Auto length check
 
     if (currentCardIndex < totalCards - 1) {
         currentCardIndex++;
@@ -710,8 +889,7 @@ function renderCard() {
     } else {
         finishLesson();
     }
-}
- 
+} 
 
         function prevCard() {
             if (currentCardIndex > 0) {
