@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gamified Learning App</title>
+    <style>
+        :root {
+            --primary: #58cc02; /* Green like Duolingo */
+            --primary-dark: #46a302;
+            --secondary: #ffc107; /* Gold/Yellow */
+            --gray: #e5e5e5;
+            --gray-dark: #afafaf;
+            --text: #3c3c3c;
+            --bg: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow: hidden; /* App like feel */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- TOP BAR (Progress) --- */
+        #top-bar {
+            height: 50px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            justify-content: space-between;
+        }
+
+        .progress-track {
+            flex-grow: 1;
+            height: 12px;
+            background-color: var(--gray);
+            border-radius: 10px;
+            margin: 0 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .close-icon {
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray-dark);
+        }
+
+        /* --- MAIN CONTENT AREA --- */
+        #main-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            position: relative;
+            padding-bottom: 80px; /* Space for bottom nav */
+        }
+
+        /* --- PATH VIEW (Map) --- */
+        #path-view {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 40px;
+            background: url('https://www.transparenttextures.com/patterns/cubes.png'); /* Subtle pattern */
+        }
+
+        .level-node {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+            position: relative;
+            box-shadow: 0 6px 0 #d4a005; /* 3D effect */
+            cursor: pointer;
+            transition: transform 0.1s;
+            z-index: 2;
+        }
+
+        .level-node:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #d4a005;
+        }
+
+        .level-node.locked {
+            background-color: var(--gray);
+            box-shadow: 0 6px 0 var(--gray-dark);
+            cursor: not-allowed;
+        }
+
+        .level-icon {
+            font-size: 32px;
+            color: white;
+        }
+
+        .level-label {
+            position: absolute;
+            bottom: -30px;
+            font-weight: bold;
+            color: var(--gray-dark);
+            white-space: nowrap;
+        }
+
+        .level-node:not(.locked) .level-label {
+            color: var(--text);
+        }
+
+        /* Connecting Line */
+        .path-line {
+            width: 4px;
+            height: 40px;
+            background-color: var(--gray-dark);
+            position: absolute;
+            bottom: -46px; /* Connects to next node */
+            z-index: 1;
+        }
+
+        /* --- LESSON VIEW (Cards) --- */
+        #lesson-view {
+            display: none; /* Hidden by default */
+            height: 100%;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+            align-items: center;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 400px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .illustration {
+            width: 200px;
+            height: 150px;
+            background-color: #f0f8ff;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+            border: 2px dashed #aaddff;
+        }
+
+        .theory-text {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        .quiz-option {
+            background: white;
+            border: 2px solid var(--gray);
+            border-radius: 12px;
+            padding: 15px;
+            width: 100%;
+            margin: 8px 0;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .quiz-option.selected {
+            border-color: var(--primary);
+            background-color: #e6fffa;
+            color: var(--primary-dark);
+        }
+
+        .quiz-option.error {
+            border-color: #ff4b4b;
+            background-color: #ffe5e5;
+            animation: shake 0.4s;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        /* Lesson Footer Buttons */
+        .lesson-footer {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .btn {
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.1s;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn-next {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 0 var(--primary-dark);
+            width: 70%;
+        }
+
+        .btn-next:disabled {
+            background-color: var(--gray);
+            box-shadow: none;
+            color: var(--gray-dark);
+            cursor: default;
+            transform: none;
+        }
+
+        .btn-back {
+            background-color: transparent;
+            color: var(--gray-dark);
+            border: 2px solid var(--gray);
+            width: 20%;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- BOTTOM NAV --- */
+        #bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 70px;
+            background: white;
+            border-top: 1px solid var(--gray);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--gray-dark);
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        /* --- CONGRATS OVERLAY --- */
+        #congrats-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 100;
+            color: white;
+            text-align: center;
+        }
+        
+        #congrats-overlay h1 {
+            font-size: 40px;
+            color: var(--secondary);
+            text-shadow: 0 0 10px rgba(255,215,0,0.5);
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <audio id="sound-applause" src="https://www.soundjay.com/human/sounds/applause-01.mp3"></audio>
+    <audio id="sound-correct" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
+    <audio id="sound-wrong" src="https://www.soundjay.com/buttons/sounds/button-10.mp3"></audio>
+
+    <div id="top-bar" style="visibility: hidden;">
+        <span class="close-icon" onclick="exitLesson()">✕</span>
+        <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div style="width: 24px;"></div> </div>
+
+    <div id="main-container">
+        
+        <div id="path-view">
+            </div>
+
+        <div id="lesson-view">
+            <div id="card-container" class="card">
+                </div>
+            
+            <div class="lesson-footer">
+                <button class="btn btn-back" onclick="prevCard()">
+                    Start
+                </button>
+                <button class="btn btn-next" id="next-btn" onclick="nextCard()">
+                    KEEP GOING
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="bottom-nav">
+        <div class="nav-item active" onclick="changeTab('English')">
+            <span class="nav-icon">📖</span>
+            <span>English</span>
+        </div>
+        <div class="nav-item" onclick="changeTab('Maths')">
+            <span class="nav-icon">➗</span>
+            <span>Maths</span>
+        </div>
+        <div class="nav-item" onclick="changeTab('Reasoning')">
+            <span class="nav-icon">🧠</span>
+            <span>Reasoning</span>
+        </div>
+    </div>
+
+    <div id="congrats-overlay">
+        <h1>AWESOME!</h1>
+        <div style="font-size: 80px;">🏆</div>
+        <p>You completed the Noun topic!</p>
+        <button class="btn btn-next" style="margin-top: 20px;" onclick="closeCongrats()">CONTINUE</button>
+    </div>
+
+    <script>
+        // --- DATA ---
+        const topics = [
+            { id: 'noun', name: 'Noun', icon: '📦', locked: false },
+            { id: 'pronoun', name: 'Pronoun', icon: '👈', locked: true },
+            { id: 'adjective', name: 'Adjective', icon: '✨', locked: true },
+            { id: 'verb', name: 'Verb', icon: '🏃', locked: true },
+            { id: 'adverb', name: 'Adverb', icon: '🚀', locked: true }
+        ];
+
+        // 4 Theory Cards + 1 Quiz Card for NOUN
+        const nounLessonData = [
+            {
+                type: 'theory',
+                illustration: '🐱',
+                title: 'What is a Noun?',
+                content: 'A Noun is a naming word. It is used to name a <b>Person, Place, Animal, or Thing</b>.'
+            },
+            {
+                type: 'theory',
+                illustration: '👦 🏫',
+                title: 'Examples',
+                content: '<b>Person:</b> Boy, Rahul, Doctor<br><b>Place:</b> School, Delhi, Park<br><b>Thing:</b> Table, Pen, Car'
+            },
+            {
+                type: 'theory',
+                illustration: '🏙️',
+                title: 'Common vs Proper',
+                content: '<b>Common Noun:</b> General names (e.g., city, dog).<br><b>Proper Noun:</b> Specific names (e.g., Mumbai, Tommy).'
+            },
+            {
+                type: 'theory',
+                illustration: '📝',
+                title: 'Spot the Noun',
+                content: 'In the sentence: <br><i>"The cat sleeps on the mat."</i><br><br><b>Cat</b> and <b>Mat</b> are nouns.'
+            },
+            {
+                type: 'quiz',
+                illustration: '❓',
+                title: 'Quiz Time!',
+                question: 'Select the NOUN in this list:',
+                options: ['Run', 'Happy', 'Apple', 'Quickly'],
+                correctIndex: 2 // Apple
+            }
+        ];
+
+        // --- STATE ---
+        let currentTopicIndex = 0;
+        let currentCardIndex = 0;
+        let isLessonActive = false;
+        let quizAnswered = false;
+
+        // --- INIT ---
+        window.onload = function() {
+            renderPath();
+        };
+
+        // --- RENDER PATH (HOME) ---
+        function renderPath() {
+            const container = document.getElementById('path-view');
+            container.innerHTML = '';
+
+            topics.forEach((topic, index) => {
+                const node = document.createElement('div');
+                node.className = `level-node ${topic.locked ? 'locked' : ''}`;
+                node.innerHTML = `
+                    <span class="level-icon">${topic.locked ? '🔒' : topic.icon}</span>
+                    <span class="level-label">${topic.name}</span>
+                    ${index < topics.length - 1 ? '<div class="path-line"></div>' : ''}
+                `;
+                
+                if (!topic.locked) {
+                    node.onclick = () => startLesson(index);
+                }
+                container.appendChild(node);
+            });
+        }
+
+        // --- LESSON LOGIC ---
+        function startLesson(index) {
+            if (topics[index].id !== 'noun') {
+                alert("Only 'Noun' content is ready for this demo!");
+                return;
+            }
+
+            currentTopicIndex = index;
+            currentCardIndex = 0;
+            isLessonActive = true;
+            
+            // Switch Views
+            document.getElementById('path-view').style.display = 'none';
+            document.getElementById('lesson-view').style.display = 'flex';
+            document.getElementById('bottom-nav').style.display = 'none';
+            document.getElementById('top-bar').style.visibility = 'visible';
+            
+            renderCard();
+        }
+
+        function renderCard() {
+            const data = nounLessonData[currentCardIndex];
+            const container = document.getElementById('card-container');
+            const nextBtn = document.getElementById('next-btn');
+            
+            // Update Progress Bar
+            const progress = ((currentCardIndex) / nounLessonData.length) * 100;
+            document.getElementById('progress-fill').style.width = `${progress}%`;
+
+            // Reset Quiz State
+            quizAnswered = false;
+
+            if (data.type === 'theory') {
+                container.innerHTML = `
+                    <div class="illustration">${data.illustration}</div>
+                    <h2>${data.title}</h2>
+                    <div class="theory-text">${data.content}</div>
+                `;
+                nextBtn.disabled = false;
+            } 
+            else if (data.type === 'quiz') {
+                let optionsHtml = '';
+                data.options.forEach((opt, i) => {
+                    optionsHtml += `<div class="quiz-option" onclick="checkAnswer(this, ${i}, ${data.correctIndex})">${opt}</div>`;
+                });
+
+                container.innerHTML = `
+                    <div class="illustration">${data.illustration}</div>
+                    <h2>${data.title}</h2>
+                    <p>${data.question}</p>
+                    <div style="width:100%">${optionsHtml}</div>
+                `;
+                nextBtn.disabled = true; // Disable until answered
+            }
+        }
+
+        function checkAnswer(element, selectedIndex, correctIndex) {
+            if (quizAnswered) return; // Prevent multiple clicks
+
+            const nextBtn = document.getElementById('next-btn');
+            
+            if (selectedIndex === correctIndex) {
+                element.classList.add('selected');
+                document.getElementById('sound-correct').play();
+                quizAnswered = true;
+                nextBtn.disabled = false; // Enable "Keep Going"
+            } else {
+                element.classList.add('error');
+                document.getElementById('sound-wrong').play();
+                setTimeout(() => {
+                    element.classList.remove('error');
+                }, 500);
+            }
+        }
+
+        function nextCard() {
+            if (currentCardIndex < nounLessonData.length - 1) {
+                currentCardIndex++;
+                renderCard();
+            } else {
+                finishLesson();
+            }
+        }
+
+        function prevCard() {
+            if (currentCardIndex > 0) {
+                currentCardIndex--;
+                renderCard();
+            } else {
+                // If on first card, confirm exit?
+                // For now, do nothing or show toast
+            }
+        }
+
+        function finishLesson() {
+            // Play Applause
+            document.getElementById('sound-applause').play();
+            
+            // Fill progress completely
+            document.getElementById('progress-fill').style.width = '100%';
+
+            // Unlock next topic
+            if (topics[currentTopicIndex + 1]) {
+                topics[currentTopicIndex + 1].locked = false;
+            }
+
+            // Show Overlay
+            document.getElementById('congrats-overlay').style.display = 'flex';
+        }
+
+        function closeCongrats() {
+            document.getElementById('congrats-overlay').style.display = 'none';
+            exitLesson();
+        }
+
+        function exitLesson() {
+            isLessonActive = false;
+            document.getElementById('path-view').style.display = 'flex';
+            document.getElementById('lesson-view').style.display = 'none';
+            document.getElementById('bottom-nav').style.display = 'flex';
+            document.getElementById('top-bar').style.visibility = 'hidden';
+            renderPath(); // Re-render to show unlocked lock
+        }
+
+        function changeTab(tabName) {
+            const items = document.querySelectorAll('.nav-item');
+            items.forEach(item => item.classList.remove('active'));
+            // Just visual logic for now
+            event.currentTarget.classList.add('active');
+            
+            if(tabName !== 'English') {
+                alert(tabName + " section coming soon!");
+                // Switch back visually for demo
+                setTimeout(() => {
+                    items.forEach(i => i.classList.remove('active'));
+                    items[0].classList.add('active');
+                }, 500);
+            }
+        }
+    </script>
+</body>
+  </html>
+  
