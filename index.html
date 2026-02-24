@@ -333,36 +333,37 @@
     <script>
         // --- 1. DEFINE TOPICS SEPARATELY ---
     
-    const englishTopics = [
-        { id: 'noun', name: 'Noun', icon: '📦', locked: false },
-        { id: 'pronoun', name: 'Pronoun', icon: '👈', locked: true },
-        { id: 'adjective', name: 'Adjective', icon: '✨', locked: true },
-        { id: 'adverb', name: 'Adverb', icon: '🚀', locked: true },
-        { id: 'conjunction', name: 'Conjunct', icon: '🔗', locked: true },
-        { id: 'models', name: 'Models', icon: '🛠️', locked: true },
-        { id: 'clauses', name: 'Clauses', icon: '📝', locked: true },
-        { id: 'grammar1', name: 'Grammar 1', icon: '🏆', locked: true }
-    ];
+    // --- 1. DEFINE TOPICS SEPARATELY ---
 
-    // Math Topics (Jo aapne mange)
-    const mathTopics = [
-        { id: 'ratio', name: 'Ratio', icon: '⚖️', locked: false }, // Center
-        { id: 'average', name: 'Average', icon: '📊', locked: true }, // Center
-        { id: 'lcm', name: 'LCM/HCF', icon: '🔢', locked: true },    // Left
-        { id: 'profit', name: 'Profit', icon: '💰', locked: true },   // Center
-        { id: 'speed', name: 'Speed', icon: '⏱️', locked: true },    // Right
-        { id: 'percentage', name: 'Percent', icon: '%', locked: true } // Left (New Row)
-    ];
+const englishTopics = [
+    { id: 'noun', name: 'Noun', icon: '📦', locked: false },
+    { id: 'pronoun', name: 'Pronoun', icon: '👈', locked: true },
+    { id: 'adjective', name: 'Adjective', icon: '✨', locked: true },
+    { id: 'adverb', name: 'Adverb', icon: '🚀', locked: true },
+    { id: 'conjunction', name: 'Conjunct', icon: '🔗', locked: true },
+    { id: 'models', name: 'Models', icon: '🛠️', locked: true }, // 'modals' ID match honi chahiye
+    { id: 'clauses', name: 'Clauses', icon: '📝', locked: true },
+    { id: 'grammar1', name: 'Grammar 1', icon: '🏆', locked: true }
+];
 
-            // --- REASONING TOPICS ---
-    const reasoningTopics = [
-        { id: 'numSeries', name: 'Num Series', icon: '🔢', locked: false }, // 1. Unlocked
-        { id: 'distance', name: 'Direction', icon: '🧭', locked: true },    // 2. Locked
-        { id: 'mathOps', name: 'Operations', icon: '➕', locked: true },    // 3. Locked
-        { id: 'ranking', name: 'Ranking', icon: '🥇', locked: true },       // 4. Locked
-        { id: 'artValues', name: 'Art. Values', icon: '🎭', locked: true }, // 5. Locked
-        { id: 'insertSign', name: 'Insert Sign', icon: '❓', locked: true } // 6. Locked
-    ];
+const mathTopics = [
+    { id: 'ratio', name: 'Ratio', icon: '⚖️', locked: false },
+    { id: 'average', name: 'Average', icon: '📊', locked: true },
+    { id: 'lcm', name: 'LCM/HCF', icon: '🔢', locked: true },
+    { id: 'profit', name: 'Profit', icon: '💰', locked: true },
+    { id: 'speed', name: 'Speed', icon: '⏱️', locked: true },
+    { id: 'percentage', name: 'Percent', icon: '%', locked: true }
+];
+
+const reasoningTopics = [
+    { id: 'numSeries', name: 'Num Series', icon: '🔢', locked: false },
+    { id: 'distance', name: 'Direction', icon: '🧭', locked: true },
+    { id: 'mathOps', name: 'Operations', icon: '➕', locked: true },
+    { id: 'ranking', name: 'Ranking', icon: '🥇', locked: true },
+    { id: 'artValues', name: 'Art. Values', icon: '🎭', locked: true },
+    { id: 'insertSign', name: 'Insert Sign', icon: '❓', locked: true }
+];
+
         
         // --- MASTER DATA OBJECT ---
         // Yahan aap naye topics ka data add kar sakte hain
@@ -1248,25 +1249,24 @@
 
         // --- 3. SWITCH SUBJECT FUNCTION (New) ---
     function switchSubject(subject) {
-        function switchSubject(subject) {
-        currentSubject = subject;
-        
-        // Buttons ko highlight karein
-        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-        document.getElementById(`nav-${subject}`).classList.add('active');
+    currentSubject = subject;
+    
+    // Buttons Highlight
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    document.getElementById(`nav-${subject}`).classList.add('active'); // Quotes fix kiye
 
-        // Logic set karein
-        if (subject === 'english') {
-            currentTopics = englishTopics;
-        } else if (subject === 'math') {
-            currentTopics = mathTopics;
-        } else if (subject === 'reasoning') {
-            currentTopics = reasoningTopics; // <--- Ye naya logic hai
-        }
-        
-        // Map ko dobara banayein
-        renderPath();
+    // Logic
+    if (subject === 'english') {
+        currentTopics = englishTopics;
+    } else if (subject === 'math') {
+        currentTopics = mathTopics;
+    } else if (subject === 'reasoning') {
+        currentTopics = reasoningTopics; // Space hataya
     }
+    
+    renderPath();
+}
+
 
         
         // --- 4. UPDATED RENDER PATH (Use currentTopics) ---
