@@ -1274,48 +1274,44 @@
     }
 
         function renderCard() {
-            const topicId = topics[currentTopicIndex].id;
-            const dataList = allLessons[topicId];
-            
-            // Safety check
-            if (!dataList || dataList.length === 0) {
-                alert("No data found!");
-                exitLesson();
-                return;
-            }
+        const topicId = currentTopics[currentTopicIndex].id; // Changed
+        const dataList = allLessons[topicId];
+        
+        // Safety Check
+        if (!dataList) { alert("Data missing!"); exitLesson(); return; }
 
-            const data = dataList[currentCardIndex];
-            const container = document.getElementById('card-container');
-            const nextBtn = document.getElementById('next-btn');
+        const data = dataList[currentCardIndex];
+        const container = document.getElementById('card-container');
+        const nextBtn = document.getElementById('next-btn');
 
-            // Progress
-            const progress = ((currentCardIndex) / dataList.length) * 100;
-            document.getElementById('progress-fill').style.width = `${progress}%`;
+        const progress = ((currentCardIndex) / dataList.length) * 100;
+        document.getElementById('progress-fill').style.width = `${progress}%`;
 
-            quizAnswered = false;
-            nextBtn.innerHTML = data.type === 'quiz' ? 'Check' : 'Keep Going';
+        quizAnswered = false;
+        nextBtn.innerHTML = data.type === 'quiz' ? 'Check' : 'Keep Going';
 
-            if (data.type === 'theory') {
-                container.innerHTML = `
-                    <div class="illustration">${data.illustration}</div>
-                    <h2>${data.title}</h2>
-                    <div class="theory-text">${data.content}</div>
-                `;
-                nextBtn.disabled = false;
-            } else if (data.type === 'quiz') {
-                let opts = '';
-                data.options.forEach((opt, i) => {
-                    opts += `<div class="quiz-option" onclick="checkAnswer(this, ${i}, ${data.correctIndex})">${opt}</div>`;
-                });
-                container.innerHTML = `
-                    <div class="illustration">${data.illustration}</div>
-                    <h2>${data.title}</h2>
-                    <p>${data.question}</p>
-                    <div style="width:100%">${opts}</div>
-                `;
-                nextBtn.disabled = true;
-            }
+        // ... (Render Logic same as before) ...
+        if (data.type === 'theory') {
+            container.innerHTML = `
+                <div class="illustration">${data.illustration}</div>
+                <h2>${data.title}</h2>
+                <div class="theory-text">${data.content}</div>
+            `;
+            nextBtn.disabled = false;
+        } else if (data.type === 'quiz') {
+            let opts = '';
+            data.options.forEach((opt, i) => {
+                opts += `<div class="quiz-option" onclick="checkAnswer(this, ${i}, ${data.correctIndex})">${opt}</div>`;
+            });
+            container.innerHTML = `
+                <div class="illustration">${data.illustration}</div>
+                <h2>${data.title}</h2>
+                <p>${data.question}</p>
+                <div style="width:100%">${opts}</div>
+            `;
+            nextBtn.disabled = true;
         }
+    }
 
         function checkAnswer(el, idx, correct) {
             if (quizAnswered) return;
@@ -1334,17 +1330,17 @@
             }
         }
 
-        function nextCard() {
-            const topicId = topics[currentTopicIndex].id;
-            const total = allLessons[topicId].length;
+         function nextCard() {
+        const topicId = currentTopics[currentTopicIndex].id; // Changed
+        const total = allLessons[topicId].length;
 
-            if (currentCardIndex < total - 1) {
-                currentCardIndex++;
-                renderCard();
-            } else {
-                finishLesson();
-            }
+        if (currentCardIndex < total - 1) {
+            currentCardIndex++;
+            renderCard();
+        } else {
+            finishLesson();
         }
+         }
 
         function prevCard() {
             if (currentCardIndex > 0) {
@@ -1354,17 +1350,16 @@
         }
 
         function finishLesson() {
-            document.getElementById('sound-applause').play().catch(e => console.log('Audio error', e));
-            document.getElementById('progress-fill').style.width = '100%';
-            
-            // Unlock next
-            if (currentTopicIndex + 1 < topics.length) {
-                topics[currentTopicIndex + 1].locked = false;
-            }
-            
-            document.getElementById('congrats-overlay').style.display = 'flex';
+        document.getElementById('sound-applause').play().catch(e => {});
+        document.getElementById('progress-fill').style.width = '100%';
+        
+        // Unlock next in CURRENT list
+        if (currentTopicIndex + 1 < currentTopics.length) {
+            currentTopics[currentTopicIndex + 1].locked = false;
         }
-
+        
+        document.getElementById('congrats-overlay').style.display = 'flex';
+        }
         function closeCongrats() {
             document.getElementById('congrats-overlay').style.display = 'none';
             exitLesson();
