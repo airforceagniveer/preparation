@@ -353,6 +353,17 @@
         { id: 'speed', name: 'Speed', icon: '⏱️', locked: true },    // Right
         { id: 'percentage', name: 'Percent', icon: '%', locked: true } // Left (New Row)
     ];
+
+            // --- REASONING TOPICS ---
+    const reasoningTopics = [
+        { id: 'numSeries', name: 'Num Series', icon: '🔢', locked: false }, // 1. Unlocked
+        { id: 'distance', name: 'Direction', icon: '🧭', locked: true },    // 2. Locked
+        { id: 'mathOps', name: 'Operations', icon: '➕', locked: true },    // 3. Locked
+        { id: 'ranking', name: 'Ranking', icon: '🥇', locked: true },       // 4. Locked
+        { id: 'artValues', name: 'Art. Values', icon: '🎭', locked: true }, // 5. Locked
+        { id: 'insertSign', name: 'Insert Sign', icon: '❓', locked: true } // 6. Locked
+    ];
+        
         // --- MASTER DATA OBJECT ---
         // Yahan aap naye topics ka data add kar sakte hain
         const allLessons = {
@@ -1205,6 +1216,34 @@
             options: ['1:2', '2:1', '5:10', '1:5'],
             correctIndex: 0 // 1:2 (Simplified)
         }
+    ] ,
+            'numSeries': [
+        {
+            type: 'theory',
+            illustration: '1️⃣ 2️⃣ 3️⃣',
+            title: 'What is Number Series?',
+            content: 'In this test, you have to find the missing number in a logical sequence.<br>Example: 2, 4, 6, 8, <b>?</b><br>Answer: 10 (+2 pattern).'
+        },
+        {
+            type: 'theory',
+            illustration: '📈',
+            title: 'Difference Pattern',
+            content: 'Check the gap between numbers.<br>5, 10, 15, 20.<br>The gap is 5. Next number is 25.'
+        },
+        {
+            type: 'quiz',
+            illustration: '❓',
+            title: 'Quiz 1',
+            question: 'Find the next number: 10, 20, 30, 40, __',
+            options: ['45', '50', '60', '55'],
+            correctIndex: 1 // 50
+        }
+    ],
+
+    // Placeholder for next topics (Direction etc.)
+    'distance': [
+        { type: 'theory', illustration: '🧭', title: 'Direction', content: 'North, South, East, West.' },
+        { type: 'quiz', illustration: '❓', title: 'Quiz', question: 'Sun rises in?', options: ['West', 'East'], correctIndex: 1 }
     ]
         
             
@@ -1230,25 +1269,26 @@
 
         // --- 3. SWITCH SUBJECT FUNCTION (New) ---
     function switchSubject(subject) {
+        function switchSubject(subject) {
         currentSubject = subject;
         
-        // Highlight Active Tab
+        // Buttons ko highlight karein
         document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
         document.getElementById(`nav-${subject}`).classList.add('active');
 
-        // Set Data
+        // Logic set karein
         if (subject === 'english') {
             currentTopics = englishTopics;
         } else if (subject === 'math') {
             currentTopics = mathTopics;
-        } else {
-            alert("Reasoning section coming soon!");
-            return;
+        } else if (subject === 'reasoning') {
+            currentTopics = reasoningTopics; // <--- Ye naya logic hai
         }
         
-        // Re-render map
+        // Map ko dobara banayein
         renderPath();
     }
+
         
         // --- 4. UPDATED RENDER PATH (Use currentTopics) ---
     function renderPath() {
