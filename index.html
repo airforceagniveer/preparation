@@ -1206,49 +1206,72 @@
             }
         };
 
-        // --- RENDER MAP ---
-        function renderPath() {
-            const container = document.getElementById('path-view');
-            container.innerHTML = '';
+        // --- 3. SWITCH SUBJECT FUNCTION (New) ---
+    function switchSubject(subject) {
+        currentSubject = subject;
+        
+        // Highlight Active Tab
+        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+        document.getElementById(`nav-${subject}`).classList.add('active');
 
-            topics.forEach((topic, index) => {
-                const node = document.createElement('div');
-                node.className = `level-node ${topic.locked ? 'locked' : ''}`;
-                node.innerHTML = `
-                    <span class="level-icon">${topic.locked ? '🔒' : topic.icon}</span>
-                    <span class="level-label">${topic.name}</span>
-                    <div class="path-line"></div>
-                `;
-                
-                if (!topic.locked) {
-                    node.onclick = () => startLesson(index);
-                }
-                container.appendChild(node);
-            });
+        // Set Data
+        if (subject === 'english') {
+            currentTopics = englishTopics;
+        } else if (subject === 'math') {
+            currentTopics = mathTopics;
+        } else {
+            alert("Reasoning section coming soon!");
+            return;
         }
+        
+        // Re-render map
+        renderPath();
+    }
+        
+        // --- 4. UPDATED RENDER PATH (Use currentTopics) ---
+    function renderPath() {
+        const container = document.getElementById('path-view');
+        container.innerHTML = '';
+
+        // Yahan 'topics' ki jagah 'currentTopics' use hoga
+        currentTopics.forEach((topic, index) => {
+            const node = document.createElement('div');
+            node.className = `level-node ${topic.locked ? 'locked' : ''}`;
+            node.innerHTML = `
+                <span class="level-icon">${topic.locked ? '🔒' : topic.icon}</span>
+                <span class="level-label">${topic.name}</span>
+                <div class="path-line"></div>
+            `;
+            
+            if (!topic.locked) {
+                node.onclick = () => startLesson(index);
+            }
+            container.appendChild(node);
+        });
+    }
 
         // --- LESSON LOGIC ---
-        function startLesson(index) {
-            const topic = topics[index];
-            if (topic.locked) return; // Locked
-            
-            if (!allLessons[topic.id]) {
-                alert("Content coming soon for " + topic.name);
-                return;
-            }
-
-            currentTopicIndex = index;
-            currentCardIndex = 0;
-            isLessonActive = true;
-            
-            // UI Switch
-            document.getElementById('path-view').style.display = 'none';
-            document.getElementById('lesson-view').style.display = 'flex';
-            document.getElementById('bottom-nav').style.display = 'none';
-            document.getElementById('top-bar').style.visibility = 'visible';
-            
-            renderCard();
+         // --- 5. UPDATED LESSON LOGIC (Use currentTopics) ---
+    function startLesson(index) {
+        const topic = currentTopics[index]; // Changed to currentTopics
+        if (topic.locked) return;
+        
+        if (!allLessons[topic.id]) {
+            alert("Content for " + topic.name + " is being created!");
+            return;
         }
+
+        currentTopicIndex = index;
+        currentCardIndex = 0;
+        isLessonActive = true;
+        
+        document.getElementById('path-view').style.display = 'none';
+        document.getElementById('lesson-view').style.display = 'flex';
+        document.getElementById('bottom-nav').style.display = 'none';
+        document.getElementById('top-bar').style.visibility = 'visible';
+        
+        renderCard();
+    }
 
         function renderCard() {
             const topicId = topics[currentTopicIndex].id;
