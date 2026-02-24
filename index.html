@@ -696,8 +696,156 @@
 
             // 4. ADVERB DATA (Placeholder)
             'adverb': [
-                { type: 'theory', illustration: '🚀', title: 'Adverb', content: 'Modifies a verb.<br>He runs <b>quickly</b>.' },
-                { type: 'quiz', illustration: '❓', title: 'Quiz', question: 'Find Adverb: "Sing loudly"', options: ['Sing', 'Loudly'], correctIndex: 1 }
+    // PART 1: The Basics
+    {
+        type: 'theory',
+        illustration: '⚡',
+        title: '1. What is an Adverb?',
+        content: 'An adverb adds meaning to a <b>Verb</b>, an <b>Adjective</b>, or another <b>Adverb</b>.<br>It tells us <i>how, when, where,</i> or <i>how much</i>.'
+    },
+    {
+        type: 'theory',
+        illustration: '🏃',
+        title: '2. Modifying Verbs',
+        content: 'Most common use: describing an action.<br>"He runs." (Basic)<br>"He runs <b>quickly</b>." (Adverb added).'
+    },
+    {
+        type: 'theory',
+        illustration: '🌡️',
+        title: '3. Modifying Adjectives',
+        content: 'Adverbs can make adjectives stronger or weaker.<br>"The tea is <b>very</b> hot."<br>"The movie was <b>quite</b> boring."'
+    },
+    {
+        type: 'quiz',
+        illustration: '❓',
+        title: 'Quiz 1',
+        question: 'Identify the adverb: "She sings beautifully."',
+        options: ['She', 'Sings', 'Beautifully', 'Music'],
+        correctIndex: 2 // Beautifully
+    },
+
+    // PART 2: The 5 Main Types
+    {
+        type: 'theory',
+        illustration: '🎨',
+        title: '4. Adverbs of Manner',
+        content: 'Answers: <b>How?</b><br>Usually ends in <b>-ly</b>.<br>Examples: Slowly, Happily, Loudly, Carefully.'
+    },
+    {
+        type: 'theory',
+        illustration: '🗺️',
+        title: '5. Adverbs of Place',
+        content: 'Answers: <b>Where?</b><br>Examples: Here, There, Everywhere, Inside, Upstairs.<br>"Please come <b>here</b>."'
+    },
+    {
+        type: 'theory',
+        illustration: '⏰',
+        title: '6. Adverbs of Time',
+        content: 'Answers: <b>When?</b><br>Examples: Now, Yesterday, Soon, Later, Tonight.<br>"I will call you <b>later</b>."'
+    },
+    {
+        type: 'quiz',
+        illustration: '🤔',
+        title: 'Quiz 2',
+        question: 'What type is "Upstairs"?',
+        options: ['Time', 'Place', 'Manner', 'Frequency'],
+        correctIndex: 1 // Place
+    },
+
+    // PART 3: Frequency & Placement (Advanced)
+    {
+        type: 'theory',
+        illustration: '📅',
+        title: '7. Adverbs of Frequency',
+        content: 'Answers: <b>How often?</b><br>Scale: Always (100%) → Often → Sometimes → Rarely → Never (0%).'
+    },
+    {
+        type: 'theory',
+        illustration: '📍',
+        title: '8. Placement Rule 1',
+        content: 'Frequency adverbs go <b>before</b> the main verb.<br>Right: "I <b>always</b> drink coffee."<br>Wrong: "I drink always coffee."'
+    },
+    {
+        type: 'theory',
+        illustration: '🛑',
+        title: '9. Placement Rule 2',
+        content: 'BUT, they go <b>after</b> the verb "To Be" (is, am, are).<br>Right: "She <b>is always</b> late."<br>Wrong: "She always is late."'
+    },
+    {
+        type: 'quiz',
+        illustration: '🧩',
+        title: 'Quiz 3',
+        question: 'Choose the correct sentence:',
+        options: [
+            'He often is happy.',
+            'He is often happy.',
+            'He is happy often.',
+            'Often he is happy.'
+        ],
+        correctIndex: 1 // After "is"
+    },
+
+    // PART 4: Formation & Irregulars
+    {
+        type: 'theory',
+        illustration: '🔨',
+        title: '10. The -ly Rule',
+        content: 'Usually: Adjective + <b>ly</b> = Adverb.<br>Quick → Quickly.<br>Loud → Loudly.<br>Happy → Happily (y changes to i).'
+    },
+    {
+        type: 'theory',
+        illustration: '🤪',
+        title: '11. Irregular Adverbs',
+        content: 'Some don\'t change!<br>Fast (Adj) → <b>Fast</b> (Adv).<br>Hard (Adj) → <b>Hard</b> (Adv).<br>Good (Adj) → <b>Well</b> (Adv).'
+    },
+    {
+        type: 'theory',
+        illustration: '⚠️',
+        title: '12. Good vs Well',
+        content: '<b>Good</b> describes a noun. "He is a good driver."<br><b>Well</b> describes a verb. "He drives well."'
+    },
+    {
+        type: 'quiz',
+        illustration: '🎭',
+        title: 'Quiz 4',
+        question: 'Complete: "He speaks English very ____."',
+        options: ['Good', 'Best', 'Well', 'Nice'],
+        correctIndex: 2 // Well (modifies 'speaks')
+    },
+
+    // PART 5: Confusing Pairs (High Level)
+    {
+        type: 'theory',
+        illustration: '🧱',
+        title: '13. Hard vs Hardly',
+        content: '<b>Hard:</b> With effort. "He works hard."<br><b>Hardly:</b> Almost not. "He hardly works." (He is lazy!).'
+    },
+    {
+        type: 'theory',
+        illustration: '⏳',
+        title: '14. Late vs Lately',
+        content: '<b>Late:</b> Not on time. "He arrived late."<br><b>Lately:</b> Recently. "Have you seen him lately?"'
+    },
+    {
+        type: 'theory',
+        illustration: '⚖️',
+        title: '15. Too vs Very',
+        content: '<b>Very:</b> A lot (Fact). "It is very hot."<br><b>Too:</b> More than needed (Negative). "It is too hot to drink."'
+    },
+    {
+        type: 'theory',
+        illustration: '📏',
+        title: '16. "Enough" Position',
+        content: '<b>Enough</b> goes AFTER the adjective.<br>Right: "He is <b>old enough</b>."<br>Wrong: "He is enough old."'
+    },
+    {
+        type: 'quiz',
+        illustration: '🎓',
+        title: 'Final Mastery Quiz',
+        question: 'Complete: "I have studied ____ for the exam."',
+        options: ['Hardly', 'Hard', 'Lately', 'Too'],
+        correctIndex: 1 // Hard (with effort)
+    } 
             ]
         };
 
