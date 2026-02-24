@@ -846,7 +846,329 @@
         options: ['Hardly', 'Hard', 'Lately', 'Too'],
         correctIndex: 1 // Hard (with effort)
     } 
-            ]
+            ],
+            'conjunction': [
+    // PART 1: The Basics (The Glue)
+    {
+        type: 'theory',
+        illustration: '🔗',
+        title: '1. What is a Conjunction?',
+        content: 'A Conjunction is a "glue" word.<br>It connects words, phrases, or clauses together.<br>Without them, sentences would be short and choppy.'
+    },
+    {
+        type: 'theory',
+        illustration: '☕',
+        title: '2. Simple Example',
+        content: 'Without: "I like tea. I like coffee."<br>With: "I like tea <b>and</b> coffee."<br>The word <b>and</b> is the conjunction.'
+    },
+    {
+        type: 'quiz',
+        illustration: '❓',
+        title: 'Quiz 1',
+        question: 'Find the conjunction: "He is poor but happy."',
+        options: ['He', 'Is', 'But', 'Happy'],
+        correctIndex: 2 // But
+    },
+
+    // PART 2: Coordinating Conjunctions (FANBOYS)
+    {
+        type: 'theory',
+        illustration: '🔑',
+        title: '3. The FANBOYS Rule',
+        content: 'There are only 7 main coordinating conjunctions.<br>Remember the name <b>FANBOYS</b>:<br><b>F</b>or, <b>A</b>nd, <b>N</b>or, <b>B</b>ut, <b>O</b>r, <b>Y</b>et, <b>S</b>o.'
+    },
+    {
+        type: 'theory',
+        illustration: '🆚',
+        title: '4. And, But, Or',
+        content: '<b>And:</b> Adds information. "Red <b>and</b> Blue."<br><b>But:</b> Shows contrast. "Small <b>but</b> strong."<br><b>Or:</b> Shows a choice. "Tea <b>or</b> Coffee?"'
+    },
+    {
+        type: 'theory',
+        illustration: '🤔',
+        title: '5. So vs For',
+        content: '<b>So:</b> Shows a result. "It rained, <b>so</b> I stayed home."<br><b>For:</b> Shows a reason (formal). "I stayed home, <b>for</b> it rained."'
+    },
+    {
+        type: 'theory',
+        illustration: '🔄',
+        title: '6. Yet',
+        content: '<b>Yet:</b> Similar to "But", usually for surprising contrasts.<br>"He is old, <b>yet</b> he runs fast."'
+    },
+    {
+        type: 'quiz',
+        illustration: '🧠',
+        title: 'Quiz 2',
+        question: 'Choose the best word: "Study hard, ___ you will fail."',
+        options: ['And', 'Or', 'But', 'So'],
+        correctIndex: 1 // Or (choice/consequence)
+    },
+
+    // PART 3: Subordinating Conjunctions (Complex Sentences)
+    {
+        type: 'theory',
+        illustration: '⤵️',
+        title: '7. Subordinating Conjunctions',
+        content: 'These join a dependent clause to a main clause.<br>They show a relationship like time, reason, or condition.<br>Examples: <b>Because, If, When, Although</b>.'
+    },
+    {
+        type: 'theory',
+        illustration: '⏰',
+        title: '8. Time Connectors',
+        content: '<b>When:</b> At that time.<br><b>While:</b> At the same time.<br><b>After / Before:</b> Sequence.<br>"Call me <b>when</b> you arrive."'
+    },
+    {
+        type: 'theory',
+        illustration: '💡',
+        title: '9. Reason & Cause',
+        content: '<b>Because / Since / As:</b> explain <i>why</i>.<br>"I am happy <b>because</b> I passed."<br>"<b>Since</b> you are here, let\'s eat."'
+    },
+    {
+        type: 'theory',
+        illustration: '🚧',
+        title: '10. Conditionals (If/Unless)',
+        content: '<b>If:</b> "<b>If</b> it rains, I will cancel."<br><b>Unless:</b> Means "If not".<br>"I won\'t go <b>unless</b> you go." (I won\'t go if you don\'t go).'
+    },
+    {
+        type: 'quiz',
+        illustration: '🧩',
+        title: 'Quiz 3',
+        question: 'Which word shows a contrast?',
+        options: ['Because', 'Although', 'If', 'Since'],
+        correctIndex: 1 // Although
+    },
+
+    // PART 4: Correlative Conjunctions (Pairs)
+    {
+        type: 'theory',
+        illustration: '👯',
+        title: '11. Correlative Pairs',
+        content: 'These conjunctions always work in pairs.<br>You must use both parts in the sentence.'
+    },
+    {
+        type: 'theory',
+        illustration: '👉',
+        title: '12. Either... Or',
+        content: 'Used for a positive choice between two.<br>"You can have <b>either</b> tea <b>or</b> coffee." (Pick one).'
+    },
+    {
+        type: 'theory',
+        illustration: '🙅',
+        title: '13. Neither... Nor',
+        content: 'Used for a negative choice.<br>"I want <b>neither</b> tea <b>nor</b> coffee." (I want nothing).'
+    },
+    {
+        type: 'theory',
+        illustration: '➕',
+        title: '14. Not Only... But Also',
+        content: 'Adds emphasis.<br>"He is <b>not only</b> smart <b>but also</b> kind." (He is both).'
+    },
+    {
+        type: 'quiz',
+        illustration: '⚖️',
+        title: 'Quiz 4',
+        question: 'Complete: "Neither John ___ his brother came."',
+        options: ['Or', 'Nor', 'And', 'But'],
+        correctIndex: 1 // Nor
+    },
+
+    // PART 5: Advanced Usage & Punctuation
+    {
+        type: 'theory',
+        illustration: '✒️',
+        title: '15. The Comma Rule',
+        content: 'When using FANBOYS to join two complete sentences, put a comma <b>before</b> the conjunction.<br>"I like him<b>, but</b> he is annoying."'
+    },
+    {
+        type: 'theory',
+        illustration: '🎩',
+        title: '16. Conjunctive Adverbs',
+        content: 'Formal transition words (However, Therefore, Meanwhile).<br>They usually need a semicolon (;).<br>"I tried hard<b>; however,</b> I failed."'
+    },
+    {
+        type: 'theory',
+        illustration: '🔚',
+        title: '17. "That" as a Connector',
+        content: 'Often used to connect ideas.<br>"He told me <b>that</b> he was tired."<br>(In spoken English, we often drop "that").'
+    },
+    {
+        type: 'quiz',
+        illustration: '🎓',
+        title: 'Final Mastery Quiz',
+        question: 'Choose the correct punctuation:',
+        options: [
+            'It was cold so I put on a coat.',
+            'It was cold, so I put on a coat.',
+            'It was cold so, I put on a coat.',
+            'It was cold, so, I put on a coat.'
+        ],
+        correctIndex: 1 // Comma before "so"
+    }
+],
+            'modals': [
+    // PART 1: The Golden Rules
+    {
+        type: 'theory',
+        illustration: '👑',
+        title: '1. What are Modals?',
+        content: 'Modals are special "helping verbs".<br>They express <b>mood</b>: Ability, Permission, Advice, or Obligation.'
+    },
+    {
+        type: 'theory',
+        illustration: '🚫',
+        title: '2. The "No-S" Rule',
+        content: 'Modals <b>never</b> change form.<br>Right: "He <b>can</b> swim."<br>Wrong: "He <b>cans</b> swim." (Never add -s, -ed, or -ing).'
+    },
+    {
+        type: 'theory',
+        illustration: '🤝',
+        title: '3. The "Bare Infinitive" Rule',
+        content: 'After a modal, always use the <b>base form</b> of the verb.<br>Right: "I must <b>go</b>."<br>Wrong: "I must <b>to go</b>."'
+    },
+    {
+        type: 'quiz',
+        illustration: '❓',
+        title: 'Quiz 1',
+        question: 'Which sentence is correct?',
+        options: [
+            'She cans drive.',
+            'She can drives.',
+            'She can drive.',
+            'She can to drive.'
+        ],
+        correctIndex: 2 // She can drive
+    },
+
+    // PART 2: Ability & Permission
+    {
+        type: 'theory',
+        illustration: '💪',
+        title: '4. Can vs Could (Ability)',
+        content: '<b>Can:</b> Ability <i>now</i>. "I <b>can</b> speak English."<br><b>Could:</b> Ability in the <i>past</i>. "I <b>could</b> run fast when I was young."'
+    },
+    {
+        type: 'theory',
+        illustration: '🚪',
+        title: '5. Can vs May (Permission)',
+        content: '<b>Can:</b> Informal. "<b>Can</b> I open the window?" (Friendly)<br><b>May:</b> Formal/Polite. "<b>May</b> I come in, Sir?" (Respectful)'
+    },
+    {
+        type: 'theory',
+        illustration: '🤷',
+        title: '6. Be Able To',
+        content: 'Use "Be able to" when "Can" is not possible.<br>"I <b>will be able to</b> help you tomorrow." (Future ability).'
+    },
+    {
+        type: 'quiz',
+        illustration: '🎩',
+        title: 'Quiz 2',
+        question: 'Choose the most polite option:',
+        options: ['Can I sit?', 'May I sit?', 'Must I sit?', 'Will I sit?'],
+        correctIndex: 1 // May (Formal)
+    },
+
+    // PART 3: Advice & Obligation
+    {
+        type: 'theory',
+        illustration: '💡',
+        title: '7. Should (Advice)',
+        content: 'Use <b>Should</b> to give a suggestion.<br>"You look tired. You <b>should</b> sleep."<br>(It is a good idea, but not forced).'
+    },
+    {
+        type: 'theory',
+        illustration: '👮',
+        title: '8. Must (Strong Necessity)',
+        content: 'Use <b>Must</b> for strict rules or internal feelings.<br>"I <b>must</b> study hard." (I feel it is important).<br>"You <b>must</b> stop at red lights."'
+    },
+    {
+        type: 'theory',
+        illustration: '📜',
+        title: '9. Have To (External Rule)',
+        content: 'Similar to Must, but for <b>external facts/laws</b>.<br>"I <b>have to</b> wear a uniform at work." (The boss says so).'
+    },
+    {
+        type: 'theory',
+        illustration: '🙅',
+        title: '10. Mustn\'t vs Don\'t Have To',
+        content: '<b>Mustn\'t:</b> Forbidden! "You <b>mustn\'t</b> smoke here."<br><b>Don\'t have to:</b> Not necessary. "You <b>don\'t have to</b> come." (It is your choice).'
+    },
+    {
+        type: 'quiz',
+        illustration: '🚦',
+        title: 'Quiz 3',
+        question: 'Which means "It is forbidden"?',
+        options: ['You don\'t have to go.', 'You shouldn\'t go.', 'You mustn\'t go.', 'You couldn\'t go.'],
+        correctIndex: 2 // Mustn't
+    },
+
+    // PART 4: Possibility & Probability
+    {
+        type: 'theory',
+        illustration: '🎲',
+        title: '11. Might / May / Could',
+        content: 'These express possibility (approx 50%).<br>"It <b>might</b> rain later."<br>"She <b>could</b> be at home."'
+    },
+    {
+        type: 'theory',
+        illustration: '💯',
+        title: '12. Must Be (Logical Conclusion)',
+        content: 'When you are 99% sure something is true.<br>"He has a Ferrari. He <b>must be</b> rich!"'
+    },
+    {
+        type: 'theory',
+        illustration: '🤔',
+        title: '13. Can\'t Be (Impossible)',
+        content: 'When you are sure something is <i>not</i> true.<br>"It <b>can\'t be</b> 5 PM already. We just started!"'
+    },
+    {
+        type: 'quiz',
+        illustration: '🕵️',
+        title: 'Quiz 4',
+        question: 'Someone knocks. You expect Pizza. You say:',
+        options: [
+            'That must be the pizza!',
+            'That can be the pizza!',
+            'That should be the pizza!',
+            'That might the pizza!'
+        ],
+        correctIndex: 0 // Must be (High certainty)
+    },
+
+    // PART 5: Past Modals (Advanced)
+    {
+        type: 'theory',
+        illustration: '🔙',
+        title: '14. Should Have (Regret)',
+        content: '<b>Should have + V3:</b> A past mistake.<br>"I <b>should have studied</b>." (But I didn\'t, and now I failed).'
+    },
+    {
+        type: 'theory',
+        illustration: '🕵️‍♀️',
+        title: '15. Must Have (Past Certainty)',
+        content: '<b>Must have + V3:</b> A logical guess about the past.<br>"The road is wet. It <b>must have rained</b> last night."'
+    },
+    {
+        type: 'theory',
+        illustration: '🤷‍♂️',
+        title: '16. Could Have (Missed Chance)',
+        content: '<b>Could have + V3:</b> Something was possible, but didn\'t happen.<br>"I <b>could have won</b>, but I slipped."'
+    },
+    {
+        type: 'quiz',
+        illustration: '🎓',
+        title: 'Final Mastery Quiz',
+        question: 'Meaning: "He should have called."',
+        options: [
+            'He called and it was good.',
+            'He didn\'t call, and that was a mistake.',
+            'He might call later.',
+            'He is calling now.'
+        ],
+        correctIndex: 1 // Past regret
+    }
+]
+        
+            
         };
 
         // --- STATE ---
