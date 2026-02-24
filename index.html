@@ -102,6 +102,12 @@
     color: var(--gray-dark);
     white-space: nowrap;
     text-align: center;
+
+    /* ये 4 लाइनें जादू करेंगी (Line को छिपा देंगी) */
+    background-color: var(--bg); /* White background */
+    padding: 2px 6px;            /* Thoda space text ke aas paas */
+    border-radius: 10px;         /* Gol kinare */
+    z-index: 5;                 /* Line ke upar dikhega */
 }
 .level-node:not(.locked) .level-label { color: var(--text); }
 
@@ -129,8 +135,7 @@
     position: absolute;
     bottom: -55px;
     z-index: 1;
-    /* Last row ke elements par line nahi chahiye */
-    display: block;
+    
 }
 /* Last row items won't have lines (handled in JS or just CSS hide) */
 .level-node:last-child .path-line { display: none; }
@@ -401,42 +406,94 @@ const topics = [
     { id: 'grammar1', name: 'Grammar 1', icon: '🏆', locked: true } 
 ];
 
-        // 4 Theory Cards + 1 Quiz Card for NOUN
-        const nounLessonData = [
-            {
-                type: 'theory',
-                illustration: '🐱',
-                title: 'What is a Noun?',
-                content: 'A Noun is a naming word. It is used to name a <b>Person, Place, Animal, or Thing</b>.'
-            },
-            {
-                type: 'theory',
-                illustration: '👦 🏫',
-                title: 'Examples',
-                content: '<b>Person:</b> Boy, Rahul, Doctor<br><b>Place:</b> School, Delhi, Park<br><b>Thing:</b> Table, Pen, Car'
-            },
-            {
-                type: 'theory',
-                illustration: '🏙️',
-                title: 'Common vs Proper',
-                content: '<b>Common Noun:</b> General names (e.g., city, dog).<br><b>Proper Noun:</b> Specific names (e.g., Mumbai, Tommy).'
-            },
-            {
-                type: 'theory',
-                illustration: '📝',
-                title: 'Spot the Noun',
-                content: 'In the sentence: <br><i>"The cat sleeps on the mat."</i><br><br><b>Cat</b> and <b>Mat</b> are nouns.'
-            },
-            {
-                type: 'quiz',
-                illustration: '❓',
-                title: 'Quiz Time!',
-                question: 'Select the NOUN in this list:',
-                options: ['Run', 'Happy', 'Apple', 'Quickly'],
-                correctIndex: 2 // Apple
-            }
-        ];
+        // 4 Theory Cards + 1 Quiz Card for NOUN // --- UPDATED NOUN DATA (12 Cards: 9 Theory + 3 Quizzes) ---
+const nounLessonData = [
+    // PART 1: Basics
+    {
+        type: 'theory',
+        illustration: '🐱',
+        title: '1. What is a Noun?',
+        content: 'A Noun is a naming word. It is used to name a <b>Person, Place, Animal, or Thing</b>.'
+    },
+    {
+        type: 'theory',
+        illustration: '👦 🏫',
+        title: '2. Examples',
+        content: '<b>Person:</b> Boy, Rahul, Doctor<br><b>Place:</b> School, Delhi, Park<br><b>Thing:</b> Table, Pen, Car'
+    },
+    {
+        type: 'theory',
+        illustration: '👀',
+        title: '3. Look Around',
+        content: 'Everything you can see or touch usually has a name. That name is a <b>Noun</b>.'
+    },
+    {
+        type: 'quiz',
+        illustration: '❓',
+        title: 'Quiz 1',
+        question: 'Which of these is a Noun (Thing)?',
+        options: ['Run', 'Blue', 'Chair', 'Quickly'],
+        correctIndex: 2 // Chair
+    },
 
+    // PART 2: Types (Common vs Proper)
+    {
+        type: 'theory',
+        illustration: '🏙️',
+        title: '4. Common Noun',
+        content: 'A general name for something.<br>Example: <i>City, Dog, Boy</i>. It does not start with a capital letter.'
+    },
+    {
+        type: 'theory',
+        illustration: '🗽',
+        title: '5. Proper Noun',
+        content: 'A special, specific name.<br>Example: <i>Mumbai, Tommy, Rahul</i>. It <b>always</b> starts with a Capital Letter.'
+    },
+    {
+        type: 'theory',
+        illustration: 'vs',
+        title: '6. Compare Them',
+        content: 'Boy -> <b>Rahul</b><br>City -> <b>Delhi</b><br>Car -> <b>Honda</b>'
+    },
+    {
+        type: 'quiz',
+        illustration: '🤔',
+        title: 'Quiz 2',
+        question: 'Select the PROPER Noun:',
+        options: ['school', 'London', 'table', 'book'],
+        correctIndex: 1 // London
+    },
+
+    // PART 3: Usage in Sentences
+    {
+        type: 'theory',
+        illustration: '📝',
+        title: '7. Subject of Sentence',
+        content: 'Nouns often come at the start of a sentence as the Subject.<br><i>"<b>Birds</b> fly in the sky."</i>'
+    },
+    {
+        type: 'theory',
+        illustration: '🎯',
+        title: '8. Object of Sentence',
+        content: 'Nouns can also receive action.<br><i>"He kicked the <b>ball</b>."</i> (Ball is the object).'
+    },
+    {
+        type: 'theory',
+        illustration: '🔍',
+        title: '9. Spotting Nouns',
+        content: 'Try to find the nouns here: <br><i>"The <b>cat</b> drinks <b>milk</b>."</i>'
+    },
+    {
+        type: 'quiz',
+        illustration: '🏆',
+        title: 'Final Quiz',
+        question: 'Identify the Noun in this sentence: "She eats an apple."',
+        options: ['She', 'Eats', 'An', 'Apple'],
+        correctIndex: 3 // Apple
+    }
+];
+
+        
         // --- STATE ---
         let currentTopicIndex = 0;
         let currentCardIndex = 0;
@@ -571,6 +628,7 @@ const topics = [
             document.getElementById('progress-fill').style.width = '100%';
 
             // Unlock next topic
+       
             if (topics[currentTopicIndex + 1]) {
                 topics[currentTopicIndex + 1].locked = false;
             }
@@ -612,4 +670,3 @@ const topics = [
 </body>
 </html>
 
-                                        
