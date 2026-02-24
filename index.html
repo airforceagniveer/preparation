@@ -311,10 +311,17 @@
     </div>
 
     <div id="bottom-nav">
-        <div class="nav-item active"><span class="nav-icon">📖</span><span>English</span></div>
-        <div class="nav-item"><span class="nav-icon">➗</span><span>Maths</span></div>
-        <div class="nav-item"><span class="nav-icon">🧠</span><span>Reasoning</span></div>
+    <div class="nav-item active" id="nav-english" onclick="switchSubject('english')">
+        <span class="nav-icon">📖</span><span>English</span>
     </div>
+    <div class="nav-item" id="nav-math" onclick="switchSubject('math')">
+        <span class="nav-icon">➗</span><span>Maths</span>
+    </div>
+    <div class="nav-item" id="nav-reasoning" onclick="switchSubject('reasoning')">
+        <span class="nav-icon">🧠</span><span>Reasoning</span>
+    </div>
+</div>
+
 
     <div id="congrats-overlay">
         <h1>AWESOME!</h1>
