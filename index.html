@@ -1319,7 +1319,366 @@ const reasoningTopics = [
         correctIndex: 0 // Since B is 3 in both, we can merge directly -> 2:3:5
     }
 ], 
-        
+            'average': [
+    // PART 1: The Foundation
+    {
+        type: 'theory',
+        illustration: '📊',
+        title: '1. What is an Average?',
+        content: 'An Average (or Mean) is a single number that represents a <b>group of numbers</b>.<br>It is the "central" value.'
+    },
+    {
+        type: 'theory',
+        illustration: '🧮',
+        title: '2. The Golden Formula',
+        content: '<b>Average = Sum of Numbers ÷ Count of Numbers</b>.<br>Memorize this! It is the key to solving everything.'
+    },
+    {
+        type: 'theory',
+        illustration: '🍎',
+        title: '3. Simple Example',
+        content: 'Data: 2, 4, 6.<br>1. Sum: 2 + 4 + 6 = <b>12</b>.<br>2. Count: There are <b>3</b> numbers.<br>3. Average: 12 ÷ 3 = <b>4</b>.'
+    },
+    {
+        type: 'quiz',
+        illustration: '❓',
+        title: 'Quiz 1',
+        question: 'Find the average of 10, 20, and 30.',
+        options: ['15', '20', '25', '60'],
+        correctIndex: 1 // Sum=60, Count=3, Avg=20
+    },
+
+    // PART 2: The "Zero" Trap
+    {
+        type: 'theory',
+        illustration: '⚠️',
+        title: '4. Does Zero Count?',
+        content: '<b>YES!</b> If a number is 0, you must include it in the sum <b>and</b> the count.<br>Example: 5, 5, 0.'
+    },
+    {
+        type: 'theory',
+        illustration: '📉',
+        title: '5. Zero Example',
+        content: 'Data: 10, 10, 10, 0.<br>Sum: 30.<br>Count: <b>4</b> (Not 3!).<br>Average: 30 ÷ 4 = <b>7.5</b>.<br>(See how the 0 pulls the average down?)'
+    },
+    {
+        type: 'quiz',
+        illustration: '🤔',
+        title: 'Quiz 2',
+        question: 'Average of 4, 4, 4, and 0 is:',
+        options: ['4', '3', '12', '16'],
+        correctIndex: 1 // Sum=12, Count=4, Avg=3
+    },
+
+    // PART 3: Reverse Engineering (Advanced)
+    {
+        type: 'theory',
+        illustration: '🔄',
+        title: '6. Finding the Total',
+        content: 'If you know the Average and the Count, you can find the Total.<br><b>Total = Average × Count</b>.'
+    },
+    {
+        type: 'theory',
+        illustration: '🕵️',
+        title: '7. Missing Number Problem',
+        content: 'Example: "Average of 3 numbers is 10. Two are 8 and 9. Find the third."<br>1. Total needed: 10 × 3 = <b>30</b>.<br>2. Current sum: 8 + 9 = <b>17</b>.<br>3. Missing: 30 - 17 = <b>13</b>.'
+    },
+    {
+        type: 'theory',
+        illustration: '👥',
+        title: '8. Adding a Person',
+        content: 'Logic: "Average age of 4 people is 20. A new person joins, average becomes 21."<br>Old Total: 4×20=80.<br>New Total: 5×21=105.<br>New Person Age: 105-80=<b>25</b>.'
+    },
+    {
+        type: 'quiz',
+        illustration: '🧩',
+        title: 'Quiz 3',
+        question: 'Average of 3 numbers is 5. Total sum is:',
+        options: ['15', '5', '3', '8'],
+        correctIndex: 0 // 3 * 5 = 15
+    },
+
+    // PART 4: Special Cases & Tricks
+    {
+        type: 'theory',
+        illustration: '🚗',
+        title: '9. Average Speed Trap',
+        content: 'Warning! Average Speed is <b>NOT</b> (Speed 1 + Speed 2) ÷ 2.<br>Formula: <b>Total Distance ÷ Total Time</b>.'
+    },
+    {
+        type: 'theory',
+        illustration: '🔢',
+        title: '10. Consecutive Numbers Trick',
+        content: 'For a list like 2, 4, 6, 8, 10 (evenly spaced).<br>The average is just the <b>middle number</b> (6) OR (First + Last) ÷ 2.'
+    },
+    {
+        type: 'theory',
+        illustration: '⚖️',
+        title: '11. Weighted Average',
+        content: 'When some numbers are more important.<br>Example: Exam (60%) vs Homework (40%).<br>You multiply each score by its weight, then add.'
+    },
+    {
+        type: 'quiz',
+        illustration: '🏆',
+        title: 'Final Mastery Quiz',
+        question: 'Find the average of 2, 4, 6, 8, ..., 100.',
+        options: ['50', '51', '52', '49'],
+        correctIndex: 1 // (2 + 100) / 2 = 51
+    }
+] ,
+            'lcm': [
+    // PART 1: The Building Blocks
+    {
+        type: 'theory',
+        illustration: '🧱',
+        title: '1. What is a Factor?',
+        content: 'A Factor is a number that <b>divides</b> another number perfectly.<br>Factors are usually <b>smaller</b> than the number.<br>Factors of 10: 1, 2, 5, 10.'
+    },
+    {
+        type: 'theory',
+        illustration: '🚀',
+        title: '2. What is a Multiple?',
+        content: 'A Multiple is the result of <b>multiplying</b> a number.<br>Multiples are usually <b>bigger</b> than the number.<br>Multiples of 3: 3, 6, 9, 12, 15...'
+    },
+    {
+        type: 'quiz',
+        illustration: '❓',
+        title: 'Quiz 1',
+        question: 'Which is a Multiple of 5?',
+        options: ['1', '2', '10', '3'],
+        correctIndex: 2 // 10 (5x2)
+    },
+
+    // PART 2: HCF (Highest Common Factor)
+    {
+        type: 'theory',
+        illustration: '🏆',
+        title: '3. Understanding HCF',
+        content: '<b>HCF</b> (or GCD) is the <b>largest</b> number that divides two or more numbers perfectly.'
+    },
+    {
+        type: 'theory',
+        illustration: '✂️',
+        title: '4. HCF Example',
+        content: 'Find HCF of 8 and 12.<br>Factors of 8: 1, 2, <b>4</b>, 8.<br>Factors of 12: 1, 2, 3, <b>4</b>, 6, 12.<br>The largest common number is <b>4</b>.'
+    },
+    {
+        type: 'theory',
+        illustration: '🎁',
+        title: '5. When to use HCF?',
+        content: 'Use HCF for <b>splitting</b> things into equal groups.<br>Keywords: "Maximum size", "Greatest number", "Cutting equal pieces".'
+    },
+    {
+        type: 'quiz',
+        illustration: '🧠',
+        title: 'Quiz 2',
+        question: 'Find HCF of 10 and 15:',
+        options: ['5', '10', '2', '30'],
+        correctIndex: 0 // 5 divides both
+    },
+
+    // PART 3: LCM (Least Common Multiple)
+    {
+        type: 'theory',
+        illustration: '🤝',
+        title: '6. Understanding LCM',
+        content: '<b>LCM</b> is the <b>smallest</b> number that appears in the times tables of both numbers.'
+    },
+    {
+        type: 'theory',
+        illustration: '📅',
+        title: '7. LCM Example',
+        content: 'Find LCM of 4 and 6.<br>Multiples of 4: 4, 8, <b>12</b>, 16...<br>Multiples of 6: 6, <b>12</b>, 18...<br>The first match is <b>12</b>.'
+    },
+    {
+        type: 'theory',
+        illustration: '🔔',
+        title: '8. When to use LCM?',
+        content: 'Use LCM for <b>repeating events</b>.<br>Keywords: "Next time together", "Minimum distance", "Bells ringing together".'
+    },
+    {
+        type: 'quiz',
+        illustration: '🏃',
+        title: 'Quiz 3',
+        question: 'One runner takes 3 mins, another 4 mins. When do they meet?',
+        options: ['7 mins', '1 min', '12 mins', '6 mins'],
+        correctIndex: 2 // LCM of 3 and 4 is 12
+    },
+
+    // PART 4: The Golden Rule & Tricks
+    {
+        type: 'theory',
+        illustration: '✨',
+        title: '9. The Golden Formula',
+        content: 'For any two numbers (A and B):<br><b>HCF × LCM = A × B</b><br>This connects everything!'
+    },
+    {
+        type: 'theory',
+        illustration: '🔢',
+        title: '10. Formula Example',
+        content: 'Numbers: 6 and 8.<br>HCF = 2.<br>LCM = 24.<br>Check: 2 × 24 = <b>48</b>.<br>Product: 6 × 8 = <b>48</b>. (It works!)'
+    },
+    {
+        type: 'theory',
+        illustration: '👻',
+        title: '11. Prime Numbers Trick',
+        content: 'If two numbers are Prime (like 3 and 5):<br><b>HCF is always 1.</b><br><b>LCM is just their Product (3×5=15).</b>'
+    },
+    {
+        type: 'quiz',
+        illustration: '🧩',
+        title: 'Quiz 4',
+        question: 'If HCF is 2 and Product is 20, what is the LCM?',
+        options: ['40', '10', '18', '22'],
+        correctIndex: 1 // LCM = Product / HCF = 20 / 2 = 10
+    },
+
+    // PART 5: Advanced/Fractional
+    {
+        type: 'theory',
+        illustration: '🍰',
+        title: '12. HCF of Fractions',
+        content: 'Yes, fractions have HCF too!<br>Formula: <b>HCF of Numerators ÷ LCM of Denominators</b>.'
+    },
+    {
+        type: 'theory',
+        illustration: '📏',
+        title: '13. Remainder Problems',
+        content: 'Word Problem: "Find number that divides 20 and 30 leaving remainder 2."<br>Step 1: Subtract remainder (20-2=18, 30-2=28).<br>Step 2: Find HCF of 18 and 28.'
+    },
+    {
+        type: 'quiz',
+        illustration: '🎓',
+        title: 'Final Mastery Quiz',
+        question: 'Identify the HCF of 3, 6, and 9:',
+        options: ['1', '3', '6', '9'],
+        correctIndex: 1 // 3 divides all of them
+    }
+],
+            'profit': [
+    // PART 1: The Shopkeeper's Dictionary
+    {
+        type: 'theory',
+        illustration: '🏷️',
+        title: '1. Key Terms',
+        content: '<b>CP (Cost Price):</b> Money paid to buy/make it.<br><b>SP (Selling Price):</b> Money received from selling it.<br><b>MP (Marked Price):</b> The price tag (Sticker price).'
+    },
+    {
+        type: 'theory',
+        illustration: '💰',
+        title: '2. Profit vs Loss',
+        content: '<b>Profit:</b> SP > CP (You made money!).<br><i>Formula: SP - CP</i><br><b>Loss:</b> CP > SP (You lost money!).<br><i>Formula: CP - SP</i>'
+    },
+    {
+        type: 'quiz',
+        illustration: '❓',
+        title: 'Quiz 1',
+        question: 'CP = $100, SP = $80. What is the result?',
+        options: ['Profit of $20', 'Loss of $20', 'No Profit No Loss', 'Loss of $80'],
+        correctIndex: 1 // Loss of 20
+    },
+
+    // PART 2: The Golden Rule of Percentages
+    {
+        type: 'theory',
+        illustration: '🥇',
+        title: '3. The Golden Rule',
+        content: 'Profit % and Loss % are <b>ALWAYS calculated on CP</b> (Cost Price).<br>Never calculate them on SP unless told to!'
+    },
+    {
+        type: 'theory',
+        illustration: '➗',
+        title: '4. The Formula',
+        content: '<b>Profit % = (Profit / CP) × 100</b><br><b>Loss % = (Loss / CP) × 100</b><br>Memorize this fraction!'
+    },
+    {
+        type: 'theory',
+        illustration: '🧮',
+        title: '5. Example Calculation',
+        content: 'Buy for $50, Sell for $60.<br>Profit = $10.<br>Profit % = ($10 / $50) × 100 = <b>20%</b>.'
+    },
+    {
+        type: 'quiz',
+        illustration: '🧠',
+        title: 'Quiz 2',
+        question: 'Bought for 200, Sold for 250. Profit %?',
+        options: ['20%', '25%', '50%', '10%'],
+        correctIndex: 1 // 50/200 = 1/4 = 25%
+    },
+
+    // PART 3: Advanced Calculations (Finding SP & CP)
+    {
+        type: 'theory',
+        illustration: '🚀',
+        title: '6. The Multiplier Method',
+        content: 'To add 20% Profit, just multiply CP by <b>1.20</b>.<br>To have 20% Loss, multiply CP by <b>0.80</b>.<br><b>SP = CP × Multiplier</b>.'
+    },
+    {
+        type: 'theory',
+        illustration: '🔄',
+        title: '7. Reverse Gear (Finding CP)',
+        content: 'If you know SP and Profit %, divide to go back.<br><b>CP = SP ÷ Multiplier</b>.<br>Ex: Sold for 120 (with 20% gain).<br>CP = 120 ÷ 1.2 = 100.'
+    },
+    {
+        type: 'quiz',
+        illustration: '🤔',
+        title: 'Quiz 3',
+        question: 'Sold for $110 at 10% profit. What was the Cost?',
+        options: ['$100', '$99', '$121', '$105'],
+        correctIndex: 0 // 110 / 1.1 = 100
+    },
+
+    // PART 4: Discount & Marked Price
+    {
+        type: 'theory',
+        illustration: '🔖',
+        title: '8. The Discount Trap',
+        content: 'Discount is <b>ALWAYS calculated on MP</b> (Marked Price).<br><b>SP = MP - Discount</b>.<br>Shopkeeper logic: Buy (CP) → Mark Up (MP) → Discount → Sell (SP).'
+    },
+    {
+        type: 'theory',
+        illustration: '📉',
+        title: '9. Successive Discounts',
+        content: 'Store says "50% + 50% OFF".<br>This is NOT 100% off!<br>100 → (-50%) → 50.<br>50 → (-50%) → 25.<br>Total you pay is 25. Total discount is <b>75%</b>.'
+    },
+    {
+        type: 'quiz',
+        illustration: '🛒',
+        title: 'Quiz 4',
+        question: 'MP = 100. Discount = 10%. What is SP?',
+        options: ['110', '90', '100', '10'],
+        correctIndex: 1 // 100 - 10 = 90
+    },
+
+    // PART 5: High Level Concepts
+    {
+        type: 'theory',
+        illustration: '⚖️',
+        title: '10. Dishonest Dealer (False Weight)',
+        content: 'If a seller uses a 900g weight instead of 1kg:<br>He pays for 900g but charges you for 1000g.<br><b>Profit % = (Error / True Weight) × 100</b>.'
+    },
+    {
+        type: 'theory',
+        illustration: '🎁',
+        title: '11. Buy 1 Get 1 Free',
+        content: 'What is the discount %?<br>You get 2 items, pay for 1.<br>Discount = 1/2 = <b>50%</b>.<br>(Formula: Free Items / Total Items).'
+    },
+    {
+        type: 'theory',
+        illustration: '📊',
+        title: '12. Margin vs Markup',
+        content: '<b>Markup:</b> % added to Cost.<br><b>Margin:</b> % of the final Selling Price.<br>Business people often speak in "Margins"!'
+    },
+    {
+        type: 'quiz',
+        illustration: '🏆',
+        title: 'Final Mastery Quiz',
+        question: 'Buy 2 Get 1 Free. Calculate Discount %.',
+        options: ['50%', '33.33%', '25%', '66%'],
+        correctIndex: 1 // 1 Free / 3 Total = 1/3 = 33.33%
+    }
+], 
+            
             'numSeries': [
         {
             type: 'theory',
